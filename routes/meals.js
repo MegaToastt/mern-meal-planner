@@ -1,8 +1,9 @@
 import express from "express";
 import models from "../models";
+import auth from "../middleware/auth";
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", auth("Admin"), async (req, res) => {
   try {
     const meals = await models.Meal.find();
     res.send(meals);
@@ -11,11 +12,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth(), async (req, res) => {
   try {
     const meal = await models.Meal.findById(req.params.id);
     if (!meal)
       return res.status(404).send(`Meal with ID ${req.params.id} not found.`);
+
+    if (req.user.role !== "Admin" && meal.user !== req.user._id)
+      return res.status(401).send({ error: "Not authorized." });
 
     return res.send(meal);
   } catch (error) {
@@ -23,13 +27,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth(), async (req, res) => {
   try {
     const new_meal = await models.Meal.create({
       name: req.body.name,
       description: req.body.description,
       ingredients: req.body.ingredients,
-      user: req.body.user
+      user: req.user._id
     });
 
     return res.send(new_meal);
@@ -38,11 +42,14 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth(), async (req, res) => {
   try {
     const meal = await models.Meal.findById(req.params.id);
     if (!meal)
       return res.status(404).send(`Meal with ID ${req.params.id} not found.`);
+
+    if (req.user.role !== "Admin" && meal.user !== req.user._id)
+      return res.status(401).send({ error: "Not authorized." });
 
     await meal.remove();
 
@@ -52,7 +59,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth("Admin"), async (req, res) => {
   try {
     const meal = await models.Meal.findById(req.params.id);
     if (!meal)
@@ -71,11 +78,14 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth(), async (req, res) => {
   try {
     const meal = await models.Meal.findById(req.params.id);
     if (!meal)
       return res.status(404).send(`Meal with ID ${req.params.id} not found.`);
+
+    if (req.user.role !== "Admin" && meal.user !== req.user._id)
+      return res.status(401).send({ error: "Not authorized." });
 
     if (req.body._id) delete req.body._id;
     if (req.body.user) delete req.body.user;
