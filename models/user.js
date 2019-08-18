@@ -20,12 +20,14 @@ const userSchema = new mongoose.Schema({
       if (!validator.isEmail(value)) {
         throw new Error({ error: "Invalid Email Address" });
       }
-    }
+    },
+    index: true
   },
   password: {
     type: String,
     required: true,
-    minLength: 7
+    minLength: 7,
+    select: false
   },
   tokens: [
     {
@@ -70,7 +72,7 @@ userSchema.methods.generateAuthToken = async function() {
 
 userSchema.statics.findByCredentials = async (email, password) => {
   // search for user by email and password
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select("+password");
   if (!user) throw new Error({ error: "Invalid login credentials" });
 
   const isPasswordMatch = await bcrypt.compare(password, user.password);

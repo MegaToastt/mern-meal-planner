@@ -1,0 +1,46 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+
+    label {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: $primary-gray;
+    }
+
+    input {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid $primary-gray;
+      font-family: $body-font;
+      // box-sizing: border-box;
+
+      &[type="submit"] {
+        background-color: $accent-blue;
+        color: white;
+        border: none;
+
+        &:hover {
+          background: none;
+          color: $primary-gray;
+          border: 1px solid $primary-gray;
+        }
+      }
+    }
+  }
+}

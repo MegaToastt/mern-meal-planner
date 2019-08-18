@@ -1,6 +1,7 @@
 import express from "express";
 import models from "../models";
 import auth from "../middleware/auth";
+import { check, validationResult } from "express-validator";
 const router = express.Router();
 
 router.get("/", auth("Admin"), async (req, res) => {
@@ -50,24 +51,48 @@ router.get("/:id", auth("Admin"), async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  try {
-    // find existing user
-    let user = await models.User.findOne({ email: req.body.email });
-    if (user) return res.status(400).send({ error: "User already registered" });
+router.post(
+  "/",
+  [
+    check("username")
+      .not()
+      .isEmpty()
+      .withMessage("Username must be provided"),
+    check("email")
+      .isEmail()
+      .withMessage("Invalid email"),
+    check("password")
+      .exists()
+      .isLength({ min: 7 })
+      .withMessage("Invalid password")
+  ],
+  async (req, res) => {
+    try {
+      // validation errors
+      const errors = validationResult(req);
+      if (!errors.isEmpty())
+        return res.status(422).json({ errors: errors.array() });
 
-    if (req.body.role) delete req.body.role;
+      // find existing user
+      let user = await models.User.findOne({ email: req.body.email });
+      if (user)
+        return res
+          .status(400)
+          .send({ errors: [{ msg: "User already registered" }] });
 
-    user = new models.User(req.body);
-    await user.save();
+      if (req.body.role) delete req.body.role;
 
-    const token = await user.generateAuthToken();
+      user = new models.User(req.body);
+      await user.save();
 
-    res.header("x-auth-token", token).send({ user, token });
-  } catch (error) {
-    res.status(400).send(error);
+      const token = await user.generateAuthToken();
+
+      res.header("x-auth-token", token).send({ user, token });
+    } catch (error) {
+      res.status(400).send(error);
+    }
   }
-});
+);
 
 router.post("/login", async (req, res) => {
   try {
@@ -77,7 +102,7 @@ router.post("/login", async (req, res) => {
     if (!user)
       return res
         .status(401)
-        .send({ error: "Login failed! Check login credentials" });
+        .send({ errors: [{ msg: "Login failed! Check login credentials" }] });
 
     const token = await user.generateAuthToken();
     res.send({ user, token });
@@ -118,7 +143,7 @@ router.put("/:id", auth("Admin"), async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth(), async (req, res) => {
   try {
     const user = await models.User.findById(req.params.id);
     if (!user)
