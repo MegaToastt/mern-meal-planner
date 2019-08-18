@@ -1,5 +1,17 @@
-import { SET_CURRENT_MEAL } from "./actionTypes";
+import { SET_CURRENT_MEAL, MEALS_LOADED } from "./actionTypes";
+import axios from "axios";
 
-export const setCurrentMeal = meal => {
-  return { type: SET_CURRENT_MEAL, payload: meal };
+export const setCurrentMeal = id => {
+  console.log(id);
+  return { type: SET_CURRENT_MEAL, payload: id };
+};
+
+export const loadMeals = () => async dispatch => {
+  try {
+    const res = await axios.get("/meals/me");
+    dispatch({ type: MEALS_LOADED, payload: res.data });
+  } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+  }
 };

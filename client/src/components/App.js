@@ -8,7 +8,7 @@ import { loadUser } from "../redux/actions/authActions";
 import { Route, Switch } from "react-router-dom";
 
 import Header from "./Header";
-import MealList from "./MealList";
+import MealList from "./meallist/MealList";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 
@@ -17,7 +17,7 @@ if (localStorage.token) setAuthToken(localStorage.token);
 const App = ({ isAuthenticated, loadUser }) => {
   useEffect(() => {
     loadUser();
-  }, []);
+  }, [loadUser]);
 
   return (
     <div className="App">

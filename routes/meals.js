@@ -13,6 +13,15 @@ router.get("/", auth("Admin"), async (req, res) => {
   }
 });
 
+router.get("/me", auth(), async (req, res) => {
+  try {
+    const meals = await models.Meal.find({ user: req.user._id });
+    res.send(meals);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 router.get("/:id", auth(), async (req, res) => {
   try {
     const meal = await models.Meal.findById(req.params.id);

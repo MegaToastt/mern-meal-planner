@@ -5,7 +5,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  CLEAR_PROFILE,
+  // CLEAR_PROFILE,
   LOGOUT
 } from "./actionTypes";
 import axios from "axios";
@@ -36,7 +36,6 @@ export const register = ({ username, email, password }) => async dispatch => {
 };
 
 export const loadUser = () => async dispatch => {
-  console.log("inloaduser");
   if (localStorage.token) setAuthToken(localStorage.token);
 
   try {

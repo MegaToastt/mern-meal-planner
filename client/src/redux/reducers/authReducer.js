@@ -5,7 +5,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  CLEAR_PROFILE,
+  // CLEAR_PROFILE,
   LOGOUT
 } from "../actions/actionTypes";
 

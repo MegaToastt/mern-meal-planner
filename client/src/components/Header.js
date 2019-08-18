@@ -11,7 +11,7 @@ const Header = ({ isAuthenticated, user, logout }) => {
       {isAuthenticated ? (
         <div className="Header-userinfo">
           {user.username} (
-          <Link onClick={logout} href="#!">
+          <Link onClick={logout} to="#!">
             Logout
           </Link>
           )
