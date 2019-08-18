@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../redux/actions/authActions";
 
-const Login = ({ login }) => {
+import { Redirect } from "react-router-dom";
+
+const Login = ({ login, isAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,6 +16,7 @@ const Login = ({ login }) => {
 
   return (
     <div className="form-container">
+      {isAuthenticated && <Redirect to="/" />}
       <h2>Login</h2>
       <form className="Register form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
@@ -38,11 +41,16 @@ const Login = ({ login }) => {
 };
 
 Login.propTypes = {
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   {
     login
   }

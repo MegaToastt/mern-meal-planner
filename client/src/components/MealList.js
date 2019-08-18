@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setCurrentMeal } from "../redux/actions/mealActions";
+import { Redirect } from "react-router-dom";
 
-const MealList = ({ meals, setCurrentItem }) => {
+const MealList = ({ meals, setCurrentMeal, isAuthenticated }) => {
   const onMealClick = id => {
     let newmeal = null;
     for (let section in meals.sections) {
@@ -13,6 +14,7 @@ const MealList = ({ meals, setCurrentItem }) => {
 
   return (
     <div className="MealList">
+      {!isAuthenticated && <Redirect to="/login" />}
       {meals.sections.map(section => {
         return (
           <div key={section.id} className="MealList-section">
@@ -37,10 +39,15 @@ const MealList = ({ meals, setCurrentItem }) => {
   );
 };
 
-MealList.propTypes = {};
+MealList.propTypes = {
+  meals: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
+};
 
 const mapStateToProps = state => ({
-  meals: state.meals
+  meals: state.meals,
+  isAuthenticated: state.auth.isAuthenticated,
+  setCurrentMeal: PropTypes.func.isRequired
 });
 
 export default connect(

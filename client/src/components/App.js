@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../redux/actions/authActions";
 
+import { Route, Switch } from "react-router-dom";
+
 import Header from "./Header";
 import MealList from "./MealList";
 import Login from "./auth/Login";
@@ -20,7 +22,11 @@ const App = ({ isAuthenticated, loadUser }) => {
   return (
     <div className="App">
       <Header />
-      {isAuthenticated ? <MealList /> : <Login />}
+      <Switch>
+        <Route exact path="/" component={MealList} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+      </Switch>
     </div>
   );
 };

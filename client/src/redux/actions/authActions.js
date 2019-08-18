@@ -72,7 +72,12 @@ export const login = (email, password) => async dispatch => {
   }
 };
 
-export const logout = () => dispatch => {
-  dispatch({ type: CLEAR_PROFILE });
-  dispatch({ type: LOGOUT });
+export const logout = () => async dispatch => {
+  try {
+    await axios.post("/users/logout");
+    dispatch({ type: LOGOUT });
+  } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+  }
 };

@@ -33,10 +33,13 @@
       &[type="submit"] {
         background-color: $accent-blue;
         color: white;
-        border: none;
+        border: 1px solid $accent-blue;
+
+        transition: 0.05s ease-in color;
+        transition: 0.05s ease-in background;
 
         &:hover {
-          background: none;
+          background-color: white;
           color: $primary-gray;
           border: 1px solid $primary-gray;
         }
