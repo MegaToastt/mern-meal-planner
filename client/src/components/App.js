@@ -8,7 +8,7 @@ import { loadUser } from "../redux/actions/authActions";
 import { Route, Switch } from "react-router-dom";
 
 import Header from "./Header";
-import MealList from "./meallist/MealList";
+import MealPlanner from "./meallist/MealPlanner";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 
@@ -23,7 +23,7 @@ const App = ({ isAuthenticated, loadUser }) => {
     <div className="App">
       <Header />
       <Switch>
-        <Route exact path="/" component={MealList} />
+        <Route exact path="/" component={MealPlanner} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
       </Switch>

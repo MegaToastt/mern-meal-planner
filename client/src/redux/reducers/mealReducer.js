@@ -2,6 +2,7 @@ import { SET_CURRENT_MEAL, MEALS_LOADED } from "../actions/actionTypes";
 
 const initialState = {
   currentMeal: null,
+
   meals: []
 };
 
