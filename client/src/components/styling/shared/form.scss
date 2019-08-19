@@ -1,4 +1,4 @@
-.form-container {
+.form-auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
     font-weight: bold;
   }
 
-  .form {
+  .form-auth {
     display: flex;
     flex-direction: column;
     width: 250px;

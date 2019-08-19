@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -7,12 +7,16 @@ const MealListInfo = ({ currentMeal }) => {
     return (
       <div className="MealInfo">
         <h2>{currentMeal.name}</h2>
-        <p>{currentMeal.description}</p>
-        <p>{currentMeal.user}</p>
-        <p>Ingredients:</p>
+        {currentMeal.description && (
+          <Fragment>
+            <h3>Description</h3>
+            <p>{currentMeal.description}</p>
+          </Fragment>
+        )}
+        <h3>Ingredients</h3>
         <ul>
           {currentMeal.ingredients.map(ing => (
-            <li>>{ing.name}</li>
+            <li>{ing.name}</li>
           ))}
         </ul>
       </div>

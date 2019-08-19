@@ -16,10 +16,10 @@ const Register = ({ register, isAuthenticated }) => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-auth-container">
       {isAuthenticated && <Redirect to="/" />}
       <h2>Register</h2>
-      <form className="Register form" onSubmit={handleSubmit}>
+      <form className="form-auth" onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
           type="text"

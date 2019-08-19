@@ -1,0 +1,25 @@
+.MealInfo {
+  padding-left: 1rem;
+  padding-top: 0.6rem;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    margin-top: 0.8rem;
+    color: $primary-gray;
+  }
+
+  ul {
+    margin-left: 0.3rem;
+    li {
+      border-left: 2px solid $accent-blue;
+      padding: 0;
+      padding-left: 0.4rem;
+      margin-top: 0.3rem;
+    }
+  }
+}

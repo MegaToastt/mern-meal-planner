@@ -15,10 +15,10 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-auth-container">
       {isAuthenticated && <Redirect to="/" />}
       <h2>Login</h2>
-      <form className="Register form" onSubmit={handleSubmit}>
+      <form className="form-auth" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
           type="email"
