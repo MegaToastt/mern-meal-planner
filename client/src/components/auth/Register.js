@@ -19,7 +19,7 @@ const Register = ({ register, isAuthenticated }) => {
     <div className="form-auth-container">
       {isAuthenticated && <Redirect to="/" />}
       <h2>Register</h2>
-      <form className="form-auth" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
           type="text"

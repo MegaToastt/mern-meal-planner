@@ -1,5 +1,5 @@
 export const SET_CURRENT_MEAL = "SET_CURRENT_MEAL";
-
+export const CLEAR_CURRENT_MEAL = "CLEAR_CURRENT_MEAL";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const USER_LOADED = "USER_LOADED";
@@ -9,3 +9,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const LOGOUT = "LOGOUT";
 export const MEALS_LOADED = "MEALS_LOADED";
+export const NEW_MEAL_ADDED = "NEW_MEAL_ADDED";
+export const SET_CURRENT_VIEW = "SET_CURRENT_VIEW";

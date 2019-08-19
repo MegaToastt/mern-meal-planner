@@ -1,12 +1,18 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setCurrentMeal } from "../../redux/actions/mealActions";
+import { setCurrentView } from "../../redux/actions/mealActions";
 import { Redirect } from "react-router-dom";
 import { loadMeals } from "../../redux/actions/mealActions";
 import MealListItem from "./MealListItem";
 
-const MealList = ({ meal, setCurrentMeal, loadMeals, isAuthenticated }) => {
+const MealList = ({
+  meal,
+  setCurrentView,
+  currentView,
+  loadMeals,
+  isAuthenticated
+}) => {
   useEffect(() => {
     loadMeals();
   }, [loadMeals]);
@@ -25,6 +31,15 @@ const MealList = ({ meal, setCurrentMeal, loadMeals, isAuthenticated }) => {
             />
           );
         })}
+        <li
+          onClick={() => setCurrentView("Add")}
+          className={
+            "MealList-meal MealList-add" +
+            (currentView === "Add" ? " MealList-add-selected" : "")
+          }
+        >
+          Add Meal
+        </li>
       </ol>
     </div>
   );
@@ -33,16 +48,18 @@ const MealList = ({ meal, setCurrentMeal, loadMeals, isAuthenticated }) => {
 MealList.propTypes = {
   meal: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  setCurrentMeal: PropTypes.func.isRequired,
-  loadMeals: PropTypes.func.isRequired
+  setCurrentView: PropTypes.func.isRequired,
+  loadMeals: PropTypes.func.isRequired,
+  currentView: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
   meal: state.meal,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  currentView: state.meal.currentView
 });
 
 export default connect(
   mapStateToProps,
-  { setCurrentMeal, loadMeals }
+  { setCurrentView, loadMeals }
 )(MealList);

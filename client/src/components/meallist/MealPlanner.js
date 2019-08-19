@@ -1,14 +1,30 @@
 import React from "react";
 import MealList from "./MealList";
 import MealInfo from "./MealListInfo";
+import MealListAddForm from "./MealListAddForm";
+import PropTypes from "prop-types";
 
-const MealPlaner = () => {
+import { connect } from "react-redux";
+
+const MealPlanner = ({ currentView }) => {
   return (
     <div className="MealPlanner">
       <MealList />
-      <MealInfo />
+      {currentView === "Info" && <MealInfo />}
+      {currentView === "Add" && <MealListAddForm />}
     </div>
   );
 };
 
-export default MealPlaner;
+MealPlanner.propTypes = {
+  currentView: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  currentView: state.meal.currentView
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(MealPlanner);

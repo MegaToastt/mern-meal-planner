@@ -18,7 +18,7 @@ const Login = ({ login, isAuthenticated }) => {
     <div className="form-auth-container">
       {isAuthenticated && <Redirect to="/" />}
       <h2>Login</h2>
-      <form className="form-auth" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
           type="email"

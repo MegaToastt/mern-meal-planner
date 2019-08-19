@@ -28,5 +28,15 @@
         color: white;
       }
     }
+    li.MealList-add {
+      color: $accent-blue;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      &.MealList-add-selected {
+        background-color: $accent-yellow;
+        color: $primary-dark;
+      }
+    }
   }
 }
