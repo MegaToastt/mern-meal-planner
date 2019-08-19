@@ -73,9 +73,12 @@ router.post(
         user: req.user._id
       });
 
-      const populated_meal = await new_meal.populate("ingredients");
-      console.log(populated_meal);
-      return res.send(new_meal);
+      // const populated_meal = await new_meal.populate("ingredients");
+      const populated_meal = await models.Meal.populate(new_meal, {
+        path: "ingredients",
+        model: "Ingredient"
+      });
+      return res.send(populated_meal);
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
