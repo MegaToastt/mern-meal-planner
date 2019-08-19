@@ -3,7 +3,8 @@ import {
   MEALS_LOADED,
   NEW_MEAL_ADDED,
   SET_CURRENT_VIEW,
-  CLEAR_CURRENT_MEAL
+  CLEAR_CURRENT_MEAL,
+  LOGOUT
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -39,6 +40,8 @@ export default function mealReducer(state = initialState, { type, payload }) {
         ...state,
         currentMeal: null
       };
+    case LOGOUT:
+      return { ...initialState };
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 .MealList {
   // padding: 0.5rem 0;
-  max-width: 170px;
+  // max-width: 170px;
+  min-width: 170px;
   background-color: $primary-lightgray;
   height: 100%;
   overflow-y: scroll;
@@ -16,6 +17,7 @@
       font-size: 1rem;
       padding: 0.6rem 0.4rem 0.6rem 1rem;
       cursor: pointer;
+      text-transform: capitalize;
 
       &:hover {
         background-color: $primary-lightgray;
