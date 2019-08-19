@@ -55,15 +55,29 @@ router.post(
       return res.status(422).json({ errors: errors.array() });
 
     try {
+      let ingredients = [];
+      if (req.body.ingredients) {
+        for (const name of req.body.ingredients) {
+          const ingredient = await models.Ingredient.create({
+            name,
+            user: req.user._id
+          });
+          ingredients.push(ingredient._id);
+        }
+      }
+
       const new_meal = await models.Meal.create({
         name: req.body.name,
         description: req.body.description,
-        ingredients: req.body.ingredients,
+        ingredients: ingredients,
         user: req.user._id
       });
 
+      const populated_meal = await new_meal.populate("ingredients");
+      console.log(populated_meal);
       return res.send(new_meal);
     } catch (error) {
+      console.log(error);
       res.status(500).send(error);
     }
   }

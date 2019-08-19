@@ -17,7 +17,7 @@ const MealPlanner = ({ currentView }) => {
 };
 
 MealPlanner.propTypes = {
-  currentView: PropTypes.bool.isRequired
+  currentView: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({

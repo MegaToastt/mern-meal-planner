@@ -16,7 +16,7 @@ const MealListInfo = ({ currentMeal }) => {
         <h3>Ingredients</h3>
         <ul>
           {currentMeal.ingredients.map(ing => (
-            <li>{ing.name}</li>
+            <li key={ing._id}>{ing.name}</li>
           ))}
         </ul>
       </div>
@@ -25,7 +25,7 @@ const MealListInfo = ({ currentMeal }) => {
 };
 
 MealListInfo.propTypes = {
-  currentMeal: PropTypes.object.isRequired
+  currentMeal: PropTypes.object
 };
 
 const mapStateToProps = state => ({

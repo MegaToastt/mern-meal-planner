@@ -32,7 +32,6 @@
     border-radius: 5px;
     border: 1px solid $primary-gray;
     font-family: $body-font;
-    // box-sizing: border-box;
 
     &[type="submit"] {
       background-color: $accent-blue;
@@ -42,10 +41,48 @@
       transition: 0.05s ease-in color;
       transition: 0.05s ease-in background;
 
+      cursor: pointer;
+
       &:hover {
         background-color: white;
         color: $primary-gray;
         border: 1px solid $primary-gray;
+      }
+    }
+  }
+
+  .inline-input {
+    display: flex;
+    margin-bottom: 0.6rem;
+
+    input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      display: inline-block;
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    button {
+      padding: 0 3rem;
+      margin: 0;
+      display: inline-block;
+      border: 1px solid $accent-blue;
+      border-left: none;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      background-color: $accent-blue;
+      color: white;
+      transition: 0.05s ease-in color;
+      transition: 0.05s ease-in background;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: white;
+        color: $primary-gray;
+        border: 1px solid $primary-gray;
+        border-left: none;
       }
     }
   }

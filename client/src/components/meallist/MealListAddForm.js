@@ -3,14 +3,23 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addMeal } from "../../redux/actions/mealActions";
+import MealAddCheckbox from "./MealAddCheckbox";
 
 const MealListAddForm = ({ isAuthenticated, addMeal }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [ingredientList, setIngredientList] = useState([]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    addMeal({ name, description });
+    addMeal({ name, description, ingredients: ingredientList });
+  };
+
+  const addIngredient = ingredient => {
+    if (ingredient === "") return;
+    for (let i = 0; i < ingredientList.length; i++)
+      if (ingredientList[i].toLowerCase() === ingredient.toLowerCase()) return;
+    setIngredientList([...ingredientList, ingredient]);
   };
 
   return (
@@ -31,6 +40,10 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
           name="description"
           onChange={e => setDescription(e.target.value)}
           value={description}
+        />
+        <MealAddCheckbox
+          ingredientList={ingredientList}
+          addIngredient={addIngredient}
         />
         <input type="submit" value="Submit" />
       </form>
