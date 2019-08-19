@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import models, { connectDb } from "./models";
 import usersRoute from "./routes/users";
 import mealsRoute from "./routes/meals";
