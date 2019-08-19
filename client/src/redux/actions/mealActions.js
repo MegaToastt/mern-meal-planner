@@ -7,7 +7,7 @@ export const setCurrentMeal = id => async dispatch => {
 
 export const loadMeals = () => async dispatch => {
   try {
-    const res = await axios.get("/meals/me");
+    const res = await axios.get("/api/meals/me");
     dispatch({ type: MEALS_LOADED, payload: res.data });
   } catch (error) {
     const errors = error.response.data.errors;

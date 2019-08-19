@@ -20,7 +20,7 @@ export const register = ({ username, email, password }) => async dispatch => {
   const body = JSON.stringify({ username, email, password });
 
   try {
-    const res = await axios.post("/users", body, config);
+    const res = await axios.post("/api/users", body, config);
 
     dispatch({ type: REGISTER_SUCCESS, payload: res.data });
 
@@ -39,7 +39,7 @@ export const loadUser = () => async dispatch => {
   if (localStorage.token) setAuthToken(localStorage.token);
 
   try {
-    const res = await axios.get("/users/me");
+    const res = await axios.get("/api/users/me");
 
     dispatch({ type: USER_LOADED, payload: res.data });
   } catch (error) {
@@ -56,7 +56,7 @@ export const login = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post("/users/login", body, config);
+    const res = await axios.post("/api/users/login", body, config);
 
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
 
@@ -73,7 +73,7 @@ export const login = (email, password) => async dispatch => {
 
 export const logout = () => async dispatch => {
   try {
-    await axios.post("/users/logout");
+    await axios.post("/api/users/logout");
     dispatch({ type: LOGOUT });
   } catch (error) {
     const errors = error.response.data.errors;

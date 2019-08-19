@@ -12,11 +12,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.get("/", (req, res) => res.send("hello"));
+// app.get("/", (req, res) => res.send("hello"));
 
-app.use("/users", usersRoute);
-app.use("/meals", mealsRoute);
-app.use("/ingredients", ingRoute);
+app.use("/api/users", usersRoute);
+app.use("/api/meals", mealsRoute);
+app.use("/api/ingredients", ingRoute);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 const port = process.env.PORT || 3001;
 connectDb().then(async () => {
