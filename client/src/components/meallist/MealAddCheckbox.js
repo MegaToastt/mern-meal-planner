@@ -20,9 +20,14 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
   };
 
   return (
-    <Fragment>
+    <div className="MealAddCheckbox">
       <label htmlFor="ingredient">Ingredients</label>
-      <div className="inline-input">
+      <div
+        className={
+          "inline-input ingredient-checkbox" +
+          (ingredientList.length > 0 ? " populated" : "")
+        }
+      >
         <input
           type="text"
           name="ingredient"
@@ -39,7 +44,7 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
           <li key={ing}>{ing}</li>
         ))}
       </ul>
-    </Fragment>
+    </div>
   );
 };
 

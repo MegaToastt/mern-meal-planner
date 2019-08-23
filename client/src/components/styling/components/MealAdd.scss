@@ -1,0 +1,31 @@
+.MealAddCheckbox {
+  margin-bottom: 0.6rem;
+  .ingredient-checkbox {
+    margin-bottom: 0;
+  }
+  .ingredient-checkbox.populated {
+    input {
+      border-bottom-left-radius: 0;
+    }
+    button {
+      border-bottom-right-radius: 0;
+    }
+
+    margin-bottom: 0;
+  }
+
+  ul {
+    background-color: $primary-lightgray;
+
+    li {
+      border: 1px solid $primary-gray;
+      border-top: none;
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+    li:last-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}
