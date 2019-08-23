@@ -7,6 +7,16 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
   const handleClick = e => {
     e.preventDefault();
     addIngredient(ingredient);
+    setIngredient("");
+  };
+
+  // disable form submit and add ingredient instead if ENTER is pressed
+  const handleKeyPress = e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addIngredient(ingredient);
+      setIngredient("");
+    }
   };
 
   return (
@@ -17,9 +27,12 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
           type="text"
           name="ingredient"
           onChange={e => setIngredient(e.target.value)}
+          onKeyPress={e => handleKeyPress(e)}
           value={ingredient}
         />
-        <button onClick={handleClick}>Add</button>
+        <button type="button" onClick={handleClick}>
+          Add
+        </button>
       </div>
       <ul>
         {ingredientList.map(ing => (
