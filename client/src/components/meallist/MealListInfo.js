@@ -1,12 +1,16 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import MealInfoControls from "./MealInfoControls";
 
 const MealListInfo = ({ currentMeal }) => {
   if (currentMeal)
     return (
       <div className="MealInfo">
-        <h2>{currentMeal.name}</h2>
+        <div className="heading">
+          <h2>{currentMeal.name}</h2>
+          <MealInfoControls />
+        </div>
         {currentMeal.description && (
           <Fragment>
             <h3>Description</h3>

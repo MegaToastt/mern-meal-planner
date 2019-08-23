@@ -1,5 +1,6 @@
 .MealInfo {
   padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 0.6rem;
   flex: 1;
   overflow-y: scroll;
@@ -27,6 +28,18 @@
       padding: 0;
       padding-left: 0.4rem;
       margin-top: 0.3rem;
+    }
+  }
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    h2 {
+      flex: 1;
+    }
+    .MealInfoControls {
+      margin: 0.3rem 0.3rem 0 0;
+      // margin-left: auto;
     }
   }
 }

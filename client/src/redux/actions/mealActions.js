@@ -3,7 +3,8 @@ import {
   MEALS_LOADED,
   NEW_MEAL_ADDED,
   SET_CURRENT_VIEW,
-  CLEAR_CURRENT_MEAL
+  CLEAR_CURRENT_MEAL,
+  MEAL_DELETED
 } from "./actionTypes";
 import axios from "axios";
 
@@ -42,4 +43,12 @@ export const addMeal = meal => async dispatch => {
     const errors = error.response.data.errors;
     console.log(errors);
   }
+};
+
+export const deleteMeal = id => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/meals/${id}`);
+    dispatch({ type: MEAL_DELETED, payload: res.data });
+    dispatch({ type: SET_CURRENT_VIEW, payload: "info" });
+  } catch (error) {}
 };

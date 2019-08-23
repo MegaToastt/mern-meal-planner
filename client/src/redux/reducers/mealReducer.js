@@ -4,7 +4,8 @@ import {
   NEW_MEAL_ADDED,
   SET_CURRENT_VIEW,
   CLEAR_CURRENT_MEAL,
-  LOGOUT
+  LOGOUT,
+  MEAL_DELETED
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -34,6 +35,12 @@ export default function mealReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         currentView: payload
+      };
+    case MEAL_DELETED:
+      return {
+        ...state,
+        currentMeal: null,
+        meals: state.meals.filter(meal => meal._id !== payload._id)
       };
     case CLEAR_CURRENT_MEAL:
       return {

@@ -11,3 +11,4 @@ export const LOGOUT = "LOGOUT";
 export const MEALS_LOADED = "MEALS_LOADED";
 export const NEW_MEAL_ADDED = "NEW_MEAL_ADDED";
 export const SET_CURRENT_VIEW = "SET_CURRENT_VIEW";
+export const MEAL_DELETED = "MEAL_DELETED";

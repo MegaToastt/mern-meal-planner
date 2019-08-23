@@ -35,3 +35,32 @@ a {
     color: $primary-dark;
   }
 }
+
+.control-button {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid $primary-gray;
+  border-radius: 3px;
+  font-family: $body-font;
+  font-size: 0.9rem;
+  background-color: $accent-blue;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: $primary-dark;
+  }
+
+  &.control- {
+    &danger {
+      background-color: $accent-red;
+      border-color: $primary-gray;
+
+      &:hover {
+        background-color: white;
+        color: $primary-dark;
+        border-color: $primary-dark;
+      }
+    }
+  }
+}

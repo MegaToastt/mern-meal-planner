@@ -97,7 +97,7 @@ router.delete("/:id", auth(), async (req, res) => {
 
     await meal.remove();
 
-    return res.json({ message: "Meal deleted successfully." });
+    return res.json({ _id: req.params.id });
   } catch (error) {
     res.status(500).send(error);
   }
