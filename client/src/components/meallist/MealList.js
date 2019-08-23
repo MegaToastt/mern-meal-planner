@@ -21,25 +21,31 @@ const MealList = ({
     <div className="MealList">
       {!isAuthenticated && <Redirect to="/login" />}
       <ol>
-        {meal.meals.map(m => {
-          return (
-            <MealListItem
-              id={m._id}
-              text={m.name}
-              key={m._id}
-              selected={meal.currentMeal && m._id === meal.currentMeal._id}
-            />
-          );
-        })}
-        <li
-          onClick={() => setCurrentView("Add")}
-          className={
-            "MealList-meal MealList-add" +
-            (currentView === "Add" ? " MealList-add-selected" : "")
-          }
-        >
-          Add Meal
-        </li>
+        {meal.loading ? (
+          <li className="MealList-meal">Loading...</li>
+        ) : (
+          meal.meals.map(m => {
+            return (
+              <MealListItem
+                id={m._id}
+                text={m.name}
+                key={m._id}
+                selected={meal.currentMeal && m._id === meal.currentMeal._id}
+              />
+            );
+          })
+        )}
+        {!meal.loading && (
+          <li
+            onClick={() => setCurrentView("Add")}
+            className={
+              "MealList-meal MealList-add" +
+              (currentView === "Add" ? " MealList-add-selected" : "")
+            }
+          >
+            Add Meal
+          </li>
+        )}
       </ol>
     </div>
   );

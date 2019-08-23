@@ -11,7 +11,8 @@ import {
 const initialState = {
   currentMeal: null,
   currentView: "Info",
-  meals: []
+  meals: [],
+  loading: true
 };
 
 export default function mealReducer(state = initialState, { type, payload }) {
@@ -23,13 +24,15 @@ export default function mealReducer(state = initialState, { type, payload }) {
     case MEALS_LOADED:
       return {
         ...state,
-        meals: payload
+        meals: payload,
+        loading: false
       };
     case NEW_MEAL_ADDED:
       return {
         ...state,
         currentMeal: payload,
-        meals: [...state.meals, payload]
+        meals: [...state.meals, payload],
+        loading: false
       };
     case SET_CURRENT_VIEW:
       return {
@@ -40,7 +43,8 @@ export default function mealReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         currentMeal: null,
-        meals: state.meals.filter(meal => meal._id !== payload._id)
+        meals: state.meals.filter(meal => meal._id !== payload._id),
+        loading: false
       };
     case CLEAR_CURRENT_MEAL:
       return {
