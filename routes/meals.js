@@ -165,10 +165,15 @@ router.patch(
         req.user._id
       );
 
+      console.log("WEEEW");
       console.log(meal.ingredients);
 
       await meal.save();
-      return res.json(meal);
+      const populated_meal = await models.Meal.populate(meal, {
+        path: "ingredients",
+        model: "Ingredient"
+      });
+      return res.json(populated_meal);
     } catch (error) {
       res.status(500).send(error);
     }
