@@ -165,9 +165,6 @@ router.patch(
         req.user._id
       );
 
-      console.log("WEEEW");
-      console.log(meal.ingredients);
-
       await meal.save();
       const populated_meal = await models.Meal.populate(meal, {
         path: "ingredients",
