@@ -26,6 +26,8 @@ const mealSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
 });
 
+mealSchema.index({ name: 1, user: 1 }, { unique: true });
+
 // mealSchema.pre("remove", async function(next) {
 // console.log("pre remove meal");
 // this.model("ingredients").remove();

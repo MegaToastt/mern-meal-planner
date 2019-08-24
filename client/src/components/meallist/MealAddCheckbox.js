@@ -41,7 +41,7 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
       </div>
       <ul>
         {ingredientList.map(ing => (
-          <li key={ing}>{ing}</li>
+          <li key={ing.name}>{ing.name}</li>
         ))}
       </ul>
     </div>

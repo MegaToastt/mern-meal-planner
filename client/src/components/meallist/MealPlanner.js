@@ -2,6 +2,7 @@ import React from "react";
 import MealList from "./MealList";
 import MealInfo from "./MealListInfo";
 import MealListAddForm from "./MealListAddForm";
+import MealListEditForm from "./MealListEditForm";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
@@ -12,6 +13,7 @@ const MealPlanner = ({ currentView }) => {
       <MealList />
       {currentView === "Info" && <MealInfo />}
       {currentView === "Add" && <MealListAddForm />}
+      {currentView === "Edit" && <MealListEditForm />}
     </div>
   );
 };

@@ -55,23 +55,20 @@ router.post(
       return res.status(422).json({ errors: errors.array() });
 
     try {
-      let ingredients = [];
-      if (req.body.ingredients) {
-        for (const name of req.body.ingredients) {
-          const ingredient = await models.Ingredient.create({
-            name,
-            user: req.user._id
-          });
-          ingredients.push(ingredient._id);
-        }
-      }
-
-      const new_meal = await models.Meal.create({
+      const new_meal_data = {
         name: req.body.name,
         description: req.body.description,
-        ingredients: ingredients,
         user: req.user._id
-      });
+      };
+
+      // const new_meal = await models.Meal.create(new_meal_data);
+      const new_meal = new models.Meal(new_meal_data);
+      new_meal.ingredients = await models.Ingredient.addIngredients(
+        req.body.ingredients,
+        req.user._id
+      );
+
+      await new_meal.save();
 
       // const populated_meal = await new_meal.populate("ingredients");
       const populated_meal = await models.Meal.populate(new_meal, {
@@ -163,6 +160,12 @@ router.patch(
       if (req.body.user) delete req.body.user;
 
       for (let b in req.body) meal[b] = req.body[b];
+      meal.ingredients = await models.Ingredient.addIngredients(
+        req.body.ingredients,
+        req.user._id
+      );
+
+      console.log(meal.ingredients);
 
       await meal.save();
       return res.json(meal);

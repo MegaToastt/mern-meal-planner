@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addMeal } from "../../redux/actions/mealActions";
+import { editMeal } from "../../redux/actions/mealActions";
 import MealAddCheckbox from "./MealAddCheckbox";
 
-const MealListAddForm = ({ isAuthenticated, addMeal }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [ingredientList, setIngredientList] = useState([]);
+const MealListEditForm = ({ isAuthenticated, editMeal, currentMeal }) => {
+  const [name, setName] = useState(currentMeal.name);
+  const [description, setDescription] = useState(currentMeal.description);
+  const [ingredientList, setIngredientList] = useState(
+    currentMeal.ingredients.map(ing => ({ name: ing.name, _id: ing._id }))
+  );
+
+  // useEffect(() => {
+  // setName(currentMeal.name);
+  // setDescription(currentMeal.description);
+  // setIngredientList(currentMeal.ingredients.map(ing => ing.name));
+  // }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
-    addMeal({ name, description, ingredients: ingredientList });
+    editMeal({
+      _id: currentMeal._id,
+      name,
+      description,
+      ingredients: ingredientList
+    });
   };
 
   const addIngredient = ingredient => {
@@ -20,13 +33,13 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
     for (let i = 0; i < ingredientList.length; i++)
       if (ingredientList[i].name.toLowerCase() === ingredient.toLowerCase())
         return;
-    setIngredientList([...ingredientList, { name: ingredient }]);
+    setIngredientList([...ingredientList, { name: ingredient, _id: null }]);
   };
 
   return (
-    <div className="MealListAddForm form-container">
+    <div className="MealListEditForm form-container">
       {isAuthenticated && <Redirect to="/" />}
-      <h2>Add Meal</h2>
+      <h2>Edit Meal</h2>
       <form onSubmit={handleSubmit} className="form">
         <label htmlFor="name">Name</label>
         <input
@@ -52,16 +65,18 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
   );
 };
 
-MealListAddForm.propTypes = {
-  addMeal: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired
+MealListEditForm.propTypes = {
+  editMeal: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  currentMeal: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  currentMeal: state.meal.currentMeal
 });
 
 export default connect(
   mapStateToProps,
-  { addMeal }
-)(MealListAddForm);
+  { editMeal }
+)(MealListEditForm);
