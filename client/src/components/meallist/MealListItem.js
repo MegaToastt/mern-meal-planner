@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { setCurrentMeal } from "../../redux/actions/mealActions";
 import { connect } from "react-redux";
