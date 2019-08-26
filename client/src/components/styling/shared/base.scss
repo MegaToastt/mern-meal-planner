@@ -64,3 +64,14 @@ a {
     }
   }
 }
+
+.ScrollbarsCustom-Track {
+  height: 100% !important;
+  top: 0 !important;
+  border-radius: 0 !important;
+  width: 5px !important;
+}
+.ScrollbarsCustom-Thumb {
+  border-radius: 0 !important;
+  background-color: $primary-gray !important;
+}
