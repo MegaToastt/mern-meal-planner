@@ -43,4 +43,17 @@
       }
     }
   }
+
+  .MealList-buttoncontainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    background-color: red;
+  }
+
+  button.MealList-addmealbutton {
+    height: 2.5rem;
+  }
 }

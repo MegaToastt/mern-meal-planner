@@ -5,7 +5,7 @@ import { setCurrentView } from "../../redux/actions/mealActions";
 import { Redirect } from "react-router-dom";
 import { loadMeals } from "../../redux/actions/mealActions";
 import MealListItem from "./MealListItem";
-import Scrollbar from "react-scrollbars-custom";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const MealList = ({
   meal,
@@ -21,7 +21,7 @@ const MealList = ({
   return (
     <div className="MealList">
       {!isAuthenticated && <Redirect to="/login" />}
-      <Scrollbar>
+      <PerfectScrollbar>
         <ol>
           {meal.loading ? (
             <li className="MealList-meal">Loading...</li>
@@ -37,19 +37,18 @@ const MealList = ({
               );
             })
           )}
-          {!meal.loading && (
-            <li
-              onClick={() => setCurrentView("Add")}
-              className={
-                "MealList-meal MealList-add" +
-                (currentView === "Add" ? " MealList-add-selected" : "")
-              }
-            >
-              Add Meal
-            </li>
-          )}
         </ol>
-      </Scrollbar>
+      </PerfectScrollbar>
+      {!meal.loading && (
+        <div className="MealList-buttoncontainer">
+          <button
+            className="MealList-addmealbutton"
+            onClick={() => setCurrentView("Add")}
+          >
+            Add Meal
+          </button>
+        </div>
+      )}
     </div>
   );
 };
