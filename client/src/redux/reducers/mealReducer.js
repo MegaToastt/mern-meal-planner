@@ -6,7 +6,8 @@ import {
   CLEAR_CURRENT_MEAL,
   LOGOUT,
   MEAL_DELETED,
-  CURRENT_MEAL_EDITED
+  CURRENT_MEAL_EDITED,
+  REGISTER_SUCCESS
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -63,6 +64,11 @@ export default function mealReducer(state = initialState, { type, payload }) {
       };
     case LOGOUT:
       return { ...initialState };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      };
     default:
       return state;
   }
