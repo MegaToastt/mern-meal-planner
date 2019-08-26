@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { loadMeals } from "../../redux/actions/mealActions";
 import MealListItem from "./MealListItem";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 const MealList = ({
   meal,

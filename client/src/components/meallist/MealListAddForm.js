@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 import { addMeal } from "../../redux/actions/mealActions";
 import MealAddCheckbox from "./MealAddCheckbox";
 
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
+
 const MealListAddForm = ({ isAuthenticated, addMeal }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -24,31 +27,33 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
   };
 
   return (
-    <div className="MealListAddForm form-container">
-      {isAuthenticated && <Redirect to="/" />}
-      <h2>Add Meal</h2>
-      <form onSubmit={handleSubmit} className="form">
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          onChange={e => setName(e.target.value)}
-          value={name}
-        />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          onChange={e => setDescription(e.target.value)}
-          value={description}
-        />
-        <MealAddCheckbox
-          ingredientList={ingredientList}
-          addIngredient={addIngredient}
-        />
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+    <PerfectScrollbar style={{ flex: 1 }}>
+      <div className="MealListAddForm form-container">
+        {isAuthenticated && <Redirect to="/" />}
+        <h2>Add Meal</h2>
+        <form onSubmit={handleSubmit} className="form">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            onChange={e => setName(e.target.value)}
+            value={name}
+          />
+          <label htmlFor="description">Description</label>
+          <input
+            type="text"
+            name="description"
+            onChange={e => setDescription(e.target.value)}
+            value={description}
+          />
+          <MealAddCheckbox
+            ingredientList={ingredientList}
+            addIngredient={addIngredient}
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </PerfectScrollbar>
   );
 };
 

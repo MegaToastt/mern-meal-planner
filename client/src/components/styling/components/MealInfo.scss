@@ -1,8 +1,8 @@
 .MealInfo {
   padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.6rem;
-  flex: 1;
+  // padding-right: 1rem;
+  // padding-top: 0.6rem;
+  // flex: 1;
   // overflow-y: scroll;
 
   h2 {
@@ -34,6 +34,7 @@
   .heading {
     display: flex;
     justify-content: space-between;
+    margin-right: 1rem;
     h2 {
       flex: 1;
     }

@@ -3,27 +3,34 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MealInfoControls from "./MealInfoControls";
 
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
+
 const MealListInfo = ({ currentMeal }) => {
   if (currentMeal)
     return (
-      <div className="MealInfo">
-        <div className="heading">
-          <h2>{currentMeal.name}</h2>
-          <MealInfoControls />
+      // <div className="scrollContainer">
+      <PerfectScrollbar style={{ flex: 1 }}>
+        <div className="MealInfo">
+          <div className="heading">
+            <h2>{currentMeal.name}</h2>
+            <MealInfoControls />
+          </div>
+          {currentMeal.description && (
+            <Fragment>
+              <h3>Description</h3>
+              <p>{currentMeal.description}</p>
+            </Fragment>
+          )}
+          <h3>Ingredients</h3>
+          <ul>
+            {currentMeal.ingredients.map(ing => (
+              <li key={ing._id}>{ing.name}</li>
+            ))}
+          </ul>
         </div>
-        {currentMeal.description && (
-          <Fragment>
-            <h3>Description</h3>
-            <p>{currentMeal.description}</p>
-          </Fragment>
-        )}
-        <h3>Ingredients</h3>
-        <ul>
-          {currentMeal.ingredients.map(ing => (
-            <li key={ing._id}>{ing.name}</li>
-          ))}
-        </ul>
-      </div>
+      </PerfectScrollbar>
+      // </div>
     );
   else return <div className="MealInfo">No meal selected</div>;
 };

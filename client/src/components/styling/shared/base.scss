@@ -65,13 +65,9 @@ a {
   }
 }
 
-.ScrollbarsCustom-Track {
-  height: 100% !important;
-  top: 0 !important;
-  border-radius: 0 !important;
-  width: 5px !important;
-}
-.ScrollbarsCustom-Thumb {
-  border-radius: 0 !important;
+// SCROLLBARS
+.ps__thumb-y {
   background-color: $primary-gray !important;
+  border-radius: 0 !important;
+  right: 0 !important;
 }
