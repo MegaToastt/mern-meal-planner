@@ -35,7 +35,6 @@ ingredientSchema.statics.addIngredients = async (ingArray, userId) => {
           ...ing,
           user: userId
         });
-        console.log("TEXT: " + new_ingredient._id);
         ingredients.push(mongoose.Types.ObjectId(new_ingredient._id));
       }
     }
