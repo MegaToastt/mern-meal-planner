@@ -5,6 +5,7 @@ import { setCurrentView } from "../../redux/actions/mealActions";
 import { Redirect } from "react-router-dom";
 import { loadMeals } from "../../redux/actions/mealActions";
 import MealListItem from "./MealListItem";
+import Scrollbar from "react-scrollbars-custom";
 
 const MealList = ({
   meal,
@@ -20,33 +21,35 @@ const MealList = ({
   return (
     <div className="MealList">
       {!isAuthenticated && <Redirect to="/login" />}
-      <ol>
-        {meal.loading ? (
-          <li className="MealList-meal">Loading...</li>
-        ) : (
-          meal.meals.map(m => {
-            return (
-              <MealListItem
-                id={m._id}
-                text={m.name}
-                key={m._id}
-                selected={meal.currentMeal && m._id === meal.currentMeal._id}
-              />
-            );
-          })
-        )}
-        {!meal.loading && (
-          <li
-            onClick={() => setCurrentView("Add")}
-            className={
-              "MealList-meal MealList-add" +
-              (currentView === "Add" ? " MealList-add-selected" : "")
-            }
-          >
-            Add Meal
-          </li>
-        )}
-      </ol>
+      <Scrollbar>
+        <ol>
+          {meal.loading ? (
+            <li className="MealList-meal">Loading...</li>
+          ) : (
+            meal.meals.map(m => {
+              return (
+                <MealListItem
+                  id={m._id}
+                  text={m.name}
+                  key={m._id}
+                  selected={meal.currentMeal && m._id === meal.currentMeal._id}
+                />
+              );
+            })
+          )}
+          {!meal.loading && (
+            <li
+              onClick={() => setCurrentView("Add")}
+              className={
+                "MealList-meal MealList-add" +
+                (currentView === "Add" ? " MealList-add-selected" : "")
+              }
+            >
+              Add Meal
+            </li>
+          )}
+        </ol>
+      </Scrollbar>
     </div>
   );
 };
