@@ -11,12 +11,8 @@ const MealInfoControls = ({ currentMeal, deleteMeal, setCurrentView }) => {
 
   return (
     <div className="MealInfoControls">
-      <button onClick={() => setCurrentView("Edit")} className="control-button">
-        Edit
-      </button>
-      <button onClick={deleteClicked} className="control-button control-danger">
-        Delete
-      </button>
+      <button onClick={() => setCurrentView("Edit")}>Edit</button>
+      <button onClick={deleteClicked}>Delete</button>
     </div>
   );
 };

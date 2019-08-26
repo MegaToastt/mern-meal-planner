@@ -21,7 +21,7 @@ const App = ({ isAuthenticated, loadUser }) => {
 
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <Switch>
         <Route exact path="/" component={MealPlanner} />
         <Route exact path="/login" component={Login} />

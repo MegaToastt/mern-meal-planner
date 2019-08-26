@@ -9,13 +9,9 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 const MealListInfo = ({ currentMeal }) => {
   if (currentMeal)
     return (
-      // <div className="scrollContainer">
       <PerfectScrollbar style={{ flex: 1 }}>
-        <div className="MealInfo">
-          <div className="heading">
-            <h2>{currentMeal.name}</h2>
-            <MealInfoControls />
-          </div>
+        <div className="MealInfo main-container">
+          <h2>{currentMeal.name}</h2>
           {currentMeal.description && (
             <Fragment>
               <h3>Description</h3>
@@ -24,13 +20,17 @@ const MealListInfo = ({ currentMeal }) => {
           )}
           <h3>Ingredients</h3>
           <ul>
-            {currentMeal.ingredients.map(ing => (
-              <li key={ing._id}>{ing.name}</li>
-            ))}
+            {currentMeal.ingredients.length ? (
+              currentMeal.ingredients.map(ing => (
+                <li key={ing._id}>{ing.name}</li>
+              ))
+            ) : (
+              <li>No ingredients</li>
+            )}
           </ul>
+          <MealInfoControls />
         </div>
       </PerfectScrollbar>
-      // </div>
     );
   else return <div className="MealInfo">No meal selected</div>;
 };

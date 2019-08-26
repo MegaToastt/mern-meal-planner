@@ -2,13 +2,14 @@
   // padding: 0.5rem 0;
   // max-width: 170px;
   min-width: 170px;
-  max-width: 20%;
+  max-width: 250px;
   background-color: $primary-lightgray;
   height: 100%;
   // overflow-y: scroll;
   // overflow: hidden;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 
   h3 {
     font-size: 1rem;
@@ -20,19 +21,18 @@
     // display: none;
     li.MealList-meal {
       font-size: 1rem;
-      padding: 0.6rem 0.4rem 0.6rem 1rem;
+      padding: 0.7rem 0.4rem 0.7rem 2rem;
       cursor: pointer;
       text-transform: capitalize;
 
       &:hover {
-        background-color: $primary-lightgray;
         // border-right: 4px solid $accent-blue;
-        color: $accent-blue;
+        color: white;
       }
 
       &.MealList-meal-selected {
-        background-color: $accent-blue;
-        color: white;
+        background-color: white;
+        color: $primary-dark;
       }
     }
     li.MealList-add {
@@ -45,6 +45,38 @@
         color: $primary-dark;
       }
     }
+
+    position: relative;
+
+    &::after {
+      content: "";
+      height: 3rem;
+      display: block;
+    }
+  }
+
+  .brand {
+    height: 5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    flex-shrink: 0;
+
+    h1 {
+      font-size: 2rem;
+
+      &:after {
+        width: 50%;
+        height: 1px;
+        content: "";
+        margin: 0 auto;
+        border-bottom: 3px solid $primary-dark;
+        display: block;
+        padding-top: 0.6rem;
+      }
+    }
   }
 
   .MealList-buttoncontainer {
@@ -53,10 +85,42 @@
     justify-content: center;
     align-items: center;
     height: 5rem;
-    background-color: red;
+    position: relative;
+
+    &::before {
+      content: "";
+      height: 3rem;
+      background: rgb(1, 1, 1);
+      background: linear-gradient(
+        to top,
+        $primary-lightgray 30%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      z-index: 1;
+      position: absolute;
+      top: -3rem;
+      width: 100%;
+      display: block;
+      pointer-events: none;
+    }
   }
 
-  button.MealList-addmealbutton {
+  .MealList-addmealbutton,
+  .MealList-addmealbutton:active,
+  .MealList-addmealbutton:focus {
     height: 2.5rem;
+    border: none;
+    width: 70%;
+    border-radius: 4rem;
+    font-family: $header-font;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background-color: $secondary-dark;
+    outline: none;
+    padding: 0;
+    color: white;
+  }
+  .MealList-addmealbutton:hover {
+    border: 2px solid white;
   }
 }
