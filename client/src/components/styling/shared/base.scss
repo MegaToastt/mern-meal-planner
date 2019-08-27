@@ -27,6 +27,13 @@ body {
   padding-right: 2rem;
 }
 
+.container-med {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 20%;
+  box-sizing: border-box;
+}
+
 button::-moz-focus-inner {
   border: 0;
 }
