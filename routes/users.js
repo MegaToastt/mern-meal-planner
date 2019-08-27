@@ -94,22 +94,38 @@ router.post(
   }
 );
 
-router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await models.User.findByCredentials(email, password);
+router.post(
+  "/login",
+  [
+    check("email")
+      .isEmail()
+      .withMessage("Invalid email"),
+    check("password")
+      .not()
+      .isEmpty()
+      .withMessage("Password empty")
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty())
+        return res.status(400).send({ errors: errors.array() });
 
-    if (!user)
-      return res
-        .status(401)
-        .send({ errors: [{ msg: "Login failed! Check login credentials" }] });
+      const { email, password } = req.body;
+      const user = await models.User.findByCredentials(email, password);
 
-    const token = await user.generateAuthToken();
-    res.send({ user, token });
-  } catch (error) {
-    res.status(400).send(error);
+      if (!user)
+        return res
+          .status(404)
+          .json({ errors: [{ msg: "Login failed! Check login credentials" }] });
+
+      const token = await user.generateAuthToken();
+      res.send({ user, token });
+    } catch (error) {
+      res.status(400).send(error);
+    }
   }
-});
+);
 
 router.delete("/:id", auth("Admin"), async (req, res) => {
   try {
