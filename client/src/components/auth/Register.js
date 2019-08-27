@@ -1,16 +1,21 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../redux/actions/authActions";
 import Alertbox from "../Alertbox";
 import HeaderLoggedout from "../HeaderLoggedout";
+import { clearAlerts } from "../../redux/actions/alertActions";
 
 import { Redirect } from "react-router-dom";
 
-const Register = ({ register, isAuthenticated }) => {
+const Register = ({ register, isAuthenticated, clearAlerts }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    clearAlerts();
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -58,7 +63,8 @@ const Register = ({ register, isAuthenticated }) => {
 
 Register.propTypes = {
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired
+  isAuthenticated: PropTypes.bool.isRequired,
+  clearAlerts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -68,6 +74,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    register
+    register,
+    clearAlerts
   }
 )(Register);
