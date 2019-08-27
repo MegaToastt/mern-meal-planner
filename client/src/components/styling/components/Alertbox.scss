@@ -1,0 +1,18 @@
+.Alertbox {
+  width: 100%;
+
+  ul {
+    width: 100%;
+
+    li {
+      border: 1px solid $primary-gray;
+      border-radius: 5px;
+      padding: 0.8rem;
+      margin-bottom: 0.4rem;
+
+      &.alert-danger {
+        border: 1px solid $accent-red;
+      }
+    }
+  }
+}
