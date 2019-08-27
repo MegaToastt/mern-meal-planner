@@ -1,24 +1,23 @@
 import mongoose from "mongoose";
-import Ingredient from "./ingredient";
 
 const mealSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  // calories: {
-  // type: Number,
-  // required: true
-  // },
-  // protein: {
-  // type: Number
-  // },
-  // carbs: {
-  // type: Number
-  // },
-  // fats: {
-  // type: Number
-  // },
+  calories: {
+    type: Number,
+    required: true
+  },
+  protein: {
+    type: Number
+  },
+  carbs: {
+    type: Number
+  },
+  fats: {
+    type: Number
+  },
   description: {
     type: String
   },
@@ -27,11 +26,5 @@ const mealSchema = new mongoose.Schema({
 });
 
 mealSchema.index({ name: 1, user: 1 }, { unique: true });
-
-// mealSchema.pre("remove", async function(next) {
-// console.log("pre remove meal");
-// this.model("ingredients").remove();
-// next();
-// });
 
 export default mongoose.model("Meal", mealSchema);
