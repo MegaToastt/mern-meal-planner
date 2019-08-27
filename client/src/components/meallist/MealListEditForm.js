@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { editMeal } from "../../redux/actions/mealActions";
 import MealAddCheckbox from "./MealAddCheckbox";
+import Alertbox from "../Alertbox";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -14,6 +15,10 @@ const MealListEditForm = ({ isAuthenticated, editMeal, currentMeal }) => {
   const [ingredientList, setIngredientList] = useState(
     currentMeal.ingredients.map(ing => ({ name: ing.name, _id: ing._id }))
   );
+  const [calories, setCalories] = useState(currentMeal.calories);
+  const [protein, setProtein] = useState(currentMeal.protein);
+  const [fat, setFat] = useState(currentMeal.fat);
+  const [carbs, setCarbs] = useState(currentMeal.carbs);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -21,7 +26,11 @@ const MealListEditForm = ({ isAuthenticated, editMeal, currentMeal }) => {
       _id: currentMeal._id,
       name,
       description,
-      ingredients: ingredientList
+      ingredients: ingredientList,
+      calories,
+      fat,
+      carbs,
+      protein
     });
   };
 
@@ -35,6 +44,7 @@ const MealListEditForm = ({ isAuthenticated, editMeal, currentMeal }) => {
 
   return (
     <PerfectScrollbar style={{ flex: 1 }}>
+      <Alertbox />
       <div className="MealListEditForm form-container">
         {isAuthenticated && <Redirect to="/" />}
         <h2>Edit Meal</h2>
@@ -56,6 +66,34 @@ const MealListEditForm = ({ isAuthenticated, editMeal, currentMeal }) => {
           <MealAddCheckbox
             ingredientList={ingredientList}
             addIngredient={addIngredient}
+          />
+          <label htmlFor="calories">Calories</label>
+          <input
+            type="number"
+            name="calories"
+            onChange={e => setCalories(e.target.value)}
+            value={calories}
+          />
+          <label htmlFor="protein">Protein</label>
+          <input
+            type="number"
+            name="protein"
+            onChange={e => setProtein(e.target.value)}
+            value={protein}
+          />
+          <label htmlFor="fat">Fat</label>
+          <input
+            type="number"
+            name="fat"
+            onChange={e => setFat(e.target.value)}
+            value={fat}
+          />
+          <label htmlFor="carbs">Carbs</label>
+          <input
+            type="number"
+            name="carbs"
+            onChange={e => setCarbs(e.target.value)}
+            value={carbs}
           />
           <input type="submit" value="Submit" />
         </form>
