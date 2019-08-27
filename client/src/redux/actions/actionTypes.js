@@ -13,3 +13,5 @@ export const NEW_MEAL_ADDED = "NEW_MEAL_ADDED";
 export const SET_CURRENT_VIEW = "SET_CURRENT_VIEW";
 export const MEAL_DELETED = "MEAL_DELETED";
 export const CURRENT_MEAL_EDITED = "CURRENT_MEAL_EDITED";
+export const ADD_ALERT = "ADD_ALERT";
+export const CLEAR_ALERTS = "CLEAR_ALERTS";
