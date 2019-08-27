@@ -15,12 +15,6 @@ const MealListEditForm = ({ isAuthenticated, editMeal, currentMeal }) => {
     currentMeal.ingredients.map(ing => ({ name: ing.name, _id: ing._id }))
   );
 
-  // useEffect(() => {
-  // setName(currentMeal.name);
-  // setDescription(currentMeal.description);
-  // setIngredientList(currentMeal.ingredients.map(ing => ing.name));
-  // }, []);
-
   const handleSubmit = e => {
     e.preventDefault();
     editMeal({
