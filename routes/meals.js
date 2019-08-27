@@ -47,7 +47,10 @@ router.post(
     auth(),
     check("name")
       .exists()
-      .withMessage("Name must be present")
+      .withMessage("Name must be present"),
+    check("calories")
+      .exists()
+      .withMessage("Calories must be selected")
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -58,7 +61,11 @@ router.post(
       const new_meal_data = {
         name: req.body.name,
         description: req.body.description,
-        user: req.user._id
+        user: req.user._id,
+        protein: req.body.protein,
+        fat: req.body.fat,
+        carbs: req.body.carbs,
+        calories: req.body.calories
       };
 
       // const new_meal = await models.Meal.create(new_meal_data);
@@ -86,13 +93,23 @@ router.post(
 router.delete("/:id", auth(), async (req, res) => {
   try {
     const meal = await models.Meal.findById(req.params.id);
+    console.log("okok");
     if (!meal)
-      return res.status(404).send(`Meal with ID ${req.params.id} not found.`);
+      return res
+        .status(404)
+        .send(
+          { errors: [{ msg: `Meal with ID ${req.params.id} not found.` }] }``
+        );
 
-    if (req.user.role !== "Admin" && meal.user !== req.user._id)
-      return res.status(401).send({ error: "Not authorized." });
+    if (
+      req.user.role.toString() !== "Admin" &&
+      meal.user.toString() !== req.user._id.toString()
+    )
+      return res.status(401).send({ errors: [{ msg: "Not authorized" }] });
 
+    console.log("okok");
     await meal.remove();
+    console.log("okok");
 
     return res.json({ _id: req.params.id });
   } catch (error) {
