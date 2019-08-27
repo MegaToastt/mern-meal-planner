@@ -17,8 +17,12 @@
   }
 
   ol {
+    width: 90%;
+    margin-left: auto;
     // display: none;
     li.MealList-meal {
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
       font-size: 1rem;
       padding: 0.7rem 0.4rem 0.7rem 2rem;
       cursor: pointer;
