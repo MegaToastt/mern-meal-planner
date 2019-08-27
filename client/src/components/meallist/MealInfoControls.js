@@ -19,8 +19,7 @@ const MealInfoControls = ({ currentMeal, deleteMeal, setCurrentView }) => {
 
 MealInfoControls.propTypes = {
   currentMeal: PropTypes.object.isRequired,
-  deleteMeal: PropTypes.func.isRequired,
-  editCurrentItem: PropTypes.func.isRequired
+  deleteMeal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
