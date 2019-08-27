@@ -6,7 +6,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   // CLEAR_PROFILE,
-  LOGOUT
+  LOGOUT,
+  ADD_ALERT,
+  CLEAR_ALERTS
 } from "./actionTypes";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
@@ -20,16 +22,20 @@ export const register = ({ username, email, password }) => async dispatch => {
   const body = JSON.stringify({ username, email, password });
 
   try {
+    dispatch({ type: CLEAR_ALERTS });
+
     const res = await axios.post("/api/users", body, config);
 
     dispatch({ type: REGISTER_SUCCESS, payload: res.data });
 
     dispatch(loadUser);
   } catch (error) {
-    const errors = error.response.data.errors;
-    // TODO:
-    // add errors to error reducer, etc
-    console.log(errors);
+    error.response.data.errors.forEach(error =>
+      dispatch({
+        type: ADD_ALERT,
+        payload: { message: error.msg, style: "danger" }
+      })
+    );
 
     dispatch({ type: REGISTER_FAIL });
   }
@@ -56,17 +62,20 @@ export const login = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password });
 
   try {
+    dispatch({ type: CLEAR_ALERTS });
+
     const res = await axios.post("/api/users/login", body, config);
 
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
 
     dispatch(loadUser());
   } catch (error) {
-    const errors = error.response.data.errors;
-    console.log(errors);
-    // TODO:
-    // add errors to error reducer, etc
-
+    error.response.data.errors.forEach(error =>
+      dispatch({
+        type: ADD_ALERT,
+        payload: { message: error.msg, style: "danger" }
+      })
+    );
     dispatch({ type: LOGIN_FAIL });
   }
 };
