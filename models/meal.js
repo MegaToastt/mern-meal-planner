@@ -15,7 +15,7 @@ const mealSchema = new mongoose.Schema({
   carbs: {
     type: Number
   },
-  fats: {
+  fat: {
     type: Number
   },
   description: {
