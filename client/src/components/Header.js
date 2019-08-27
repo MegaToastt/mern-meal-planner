@@ -11,7 +11,7 @@ const Header = ({ isAuthenticated, user, logout }) => {
         <div className="Header-userinfo">
           <span>Welcome, {user.username}</span>
           <div className="Header-userimg" onClick={logout}>
-            <img src="#" alt="User image (LOGOUT)" />
+            <img src="#" alt="User" />
           </div>
         </div>
       ) : (
