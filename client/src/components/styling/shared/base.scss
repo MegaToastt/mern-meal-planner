@@ -27,6 +27,10 @@ body {
   padding-right: 2rem;
 }
 
+button::-moz-focus-inner {
+  border: 0;
+}
+
 h1,
 h2,
 h3 {
