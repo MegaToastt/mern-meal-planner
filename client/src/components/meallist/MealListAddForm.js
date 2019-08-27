@@ -12,10 +12,22 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [ingredientList, setIngredientList] = useState([]);
+  const [calories, setCalories] = useState(0);
+  const [protein, setProtein] = useState(0);
+  const [fat, setFat] = useState(0);
+  const [carbs, setCarbs] = useState(0);
 
   const handleSubmit = e => {
     e.preventDefault();
-    addMeal({ name, description, ingredients: ingredientList });
+    addMeal({
+      name,
+      description,
+      ingredients: ingredientList,
+      calories,
+      protein,
+      fat,
+      carbs
+    });
   };
 
   const addIngredient = ingredient => {
@@ -49,6 +61,34 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
           <MealAddCheckbox
             ingredientList={ingredientList}
             addIngredient={addIngredient}
+          />
+          <label htmlFor="calories">Calories</label>
+          <input
+            type="number"
+            name="calories"
+            onChange={e => setCalories(e.target.value)}
+            value={calories}
+          />
+          <label htmlFor="protein">Protein</label>
+          <input
+            type="number"
+            name="protein"
+            onChange={e => setProtein(e.target.value)}
+            value={protein}
+          />
+          <label htmlFor="fat">Fat</label>
+          <input
+            type="number"
+            name="fat"
+            onChange={e => setFat(e.target.value)}
+            value={fat}
+          />
+          <label htmlFor="carbs">Carbs</label>
+          <input
+            type="number"
+            name="carbs"
+            onChange={e => setCarbs(e.target.value)}
+            value={carbs}
           />
           <input type="submit" value="Submit" />
         </form>

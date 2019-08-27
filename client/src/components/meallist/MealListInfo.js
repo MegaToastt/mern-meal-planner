@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MealInfoControls from "./MealInfoControls";
+import Alertbox from "../Alertbox";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -10,6 +11,7 @@ const MealListInfo = ({ currentMeal }) => {
   if (currentMeal)
     return (
       <PerfectScrollbar style={{ flex: 1 }}>
+        <Alertbox />
         <div className="MealInfo main-container">
           <h2>{currentMeal.name}</h2>
           {currentMeal.description && (
@@ -28,6 +30,11 @@ const MealListInfo = ({ currentMeal }) => {
               <li>No ingredients</li>
             )}
           </ul>
+          <h3>Nutrition</h3>
+          <p>Calories: {currentMeal.calories}</p>
+          <p>Protein: {currentMeal.protein}</p>
+          <p>Fat: {currentMeal.fat}</p>
+          <p>Carbs: {currentMeal.carbs}</p>
           <MealInfoControls />
         </div>
       </PerfectScrollbar>
