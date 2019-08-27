@@ -58,6 +58,7 @@ router.post(
       return res.status(422).json({ errors: errors.array() });
 
     try {
+      console.log(req.body.fat);
       const new_meal_data = {
         name: req.body.name,
         description: req.body.description,
@@ -158,7 +159,10 @@ router.patch(
     auth(),
     check("name")
       .exists()
-      .withMessage("Name must be present")
+      .withMessage("Name must be present"),
+    check("calories")
+      .exists()
+      .withMessage("Calories must be entered")
   ],
   async (req, res) => {
     try {
@@ -170,8 +174,11 @@ router.patch(
       if (!meal)
         return res.status(404).send(`Meal with ID ${req.params.id} not found.`);
 
-      if (req.user.role !== "Admin" && meal.user !== req.user._id)
-        return res.status(401).send({ error: "Not authorized." });
+      if (
+        req.user.role !== "Admin" &&
+        meal.user.toString() !== req.user._id.toString()
+      )
+        return res.status(401).send({ errors: [{ msg: "Not authorized." }] });
 
       if (req.body._id) delete req.body._id;
       if (req.body.user) delete req.body.user;
