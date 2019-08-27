@@ -1,4 +1,8 @@
 .MealInfo {
+  p {
+    margin-bottom: 0.4rem;
+  }
+
   h2 {
     font-weight: bold;
     text-transform: capitalize;
@@ -36,7 +40,9 @@
       border-left: 2px solid $primary-gray;
 
       &:last-child {
+        // border-left-color: transparent;
         border-left: none;
+        margin-left: 2px;
       }
 
       &:before {
@@ -53,8 +59,8 @@
       position: absolute;
       content: "";
       border-left: 2px solid $primary-gray;
-      height: 1.1rem;
-      bottom: 0.6rem;
+      height: 1.2rem;
+      bottom: 9px;
     }
   }
 
