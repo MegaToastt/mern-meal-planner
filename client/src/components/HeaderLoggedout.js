@@ -4,28 +4,22 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/actions/authActions";
 
-const Header = ({ isAuthenticated, user, logout }) => {
+const HeaderLoggedout = ({ isAuthenticated, user, logout }) => {
   return (
     <header className="Header">
-      {isAuthenticated ? (
-        <div className="Header-userinfo">
-          <span>Welcome, {user.username}</span>
-          <div className="Header-userimg" onClick={logout}>
-            <img src="#" alt="User" />
-          </div>
-        </div>
-      ) : (
-        <div className="Header-loggedout">
-          <Link to="/login">Login </Link>
-          or
-          <Link to="/register"> Register</Link>
-        </div>
-      )}
+      <div className="Header-loggedout">
+        <Link to="/login">Login </Link>
+        or
+        <Link to="/register"> Register</Link>
+      </div>
+      <div className="brand">
+        <h1>MealManager</h1>
+      </div>
     </header>
   );
 };
 
-Header.propTypes = {
+HeaderLoggedout.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   user: PropTypes.object,
   logout: PropTypes.func.isRequired
@@ -39,4 +33,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logout }
-)(Header);
+)(HeaderLoggedout);
