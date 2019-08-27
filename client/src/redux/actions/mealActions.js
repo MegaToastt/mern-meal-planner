@@ -5,7 +5,8 @@ import {
   SET_CURRENT_VIEW,
   CLEAR_CURRENT_MEAL,
   MEAL_DELETED,
-  CURRENT_MEAL_EDITED
+  CURRENT_MEAL_EDITED,
+  ADD_ALERT
 } from "./actionTypes";
 import axios from "axios";
 
@@ -41,8 +42,12 @@ export const addMeal = meal => async dispatch => {
     dispatch({ type: NEW_MEAL_ADDED, payload: res.data });
     dispatch({ type: SET_CURRENT_VIEW, payload: "Info" });
   } catch (error) {
-    const errors = error.response.data.errors;
-    console.log(errors);
+    error.response.data.errors.forEach(error =>
+      dispatch({
+        type: ADD_ALERT,
+        payload: { message: error.msg, style: "danger" }
+      })
+    );
   }
 };
 
@@ -58,8 +63,12 @@ export const editMeal = meal => async dispatch => {
     dispatch({ type: CURRENT_MEAL_EDITED, payload: res.data });
     dispatch({ type: SET_CURRENT_VIEW, payload: "Info" });
   } catch (error) {
-    const errors = error.response.data.errors;
-    console.log(errors);
+    error.response.data.errors.forEach(error =>
+      dispatch({
+        type: ADD_ALERT,
+        payload: { message: error.msg, style: "danger" }
+      })
+    );
   }
 };
 
@@ -68,5 +77,12 @@ export const deleteMeal = id => async dispatch => {
     const res = await axios.delete(`/api/meals/${id}`);
     dispatch({ type: MEAL_DELETED, payload: res.data });
     dispatch({ type: SET_CURRENT_VIEW, payload: "info" });
-  } catch (error) {}
+  } catch (error) {
+    error.response.data.errors.forEach(error =>
+      dispatch({
+        type: ADD_ALERT,
+        payload: { message: error.msg, style: "danger" }
+      })
+    );
+  }
 };
