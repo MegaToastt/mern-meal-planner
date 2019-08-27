@@ -73,12 +73,12 @@ userSchema.methods.generateAuthToken = async function() {
 userSchema.statics.findByCredentials = async (email, password) => {
   // search for user by email and password
   const user = await User.findOne({ email }).select("+password");
-  if (!user) throw new Error({ error: "Invalid login credentials" });
+  if (!user) return null;
 
   const isPasswordMatch = await bcrypt.compare(password, user.password);
-  if (!isPasswordMatch) throw new Error({ error: "Invalid login credentials" });
 
-  return user;
+  if (isPasswordMatch) return user;
+  else return null;
 };
 
 const User = mongoose.model("User", userSchema);
