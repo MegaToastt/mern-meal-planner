@@ -46,7 +46,10 @@ const MealList = ({
       {!meal.loading && (
         <div className="MealList-buttoncontainer">
           <button
-            className="MealList-addmealbutton"
+            className={
+              "MealList-addmealbutton" +
+              (currentView === "Add" ? " MealList-addmealbutton-active" : "")
+            }
             onClick={() => setCurrentView("Add")}
           >
             Add Meal

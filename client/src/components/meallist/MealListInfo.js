@@ -32,7 +32,7 @@ const MealListInfo = ({ currentMeal }) => {
         </div>
       </PerfectScrollbar>
     );
-  else return <div className="MealInfo">No meal selected</div>;
+  else return <div className="MealInfo main-container">No meal selected</div>;
 };
 
 MealListInfo.propTypes = {

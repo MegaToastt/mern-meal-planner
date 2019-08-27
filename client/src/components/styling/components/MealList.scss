@@ -123,4 +123,8 @@
   .MealList-addmealbutton:hover {
     border: 2px solid white;
   }
+  .MealList-addmealbutton.MealList-addmealbutton-active {
+    background-color: white;
+    color: $secondary-dark;
+  }
 }
