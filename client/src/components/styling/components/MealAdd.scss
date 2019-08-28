@@ -1,57 +1,68 @@
 .MealAddCheckbox {
   margin-bottom: 0.6rem;
+  position: relative;
+  margin-bottom: 2rem;
 
-  .content {
-    display: flex;
-    .inputs {
-      flex-basis: 0;
-      flex-grow: 1;
-      margin-right: 0.5rem;
-      .ingredient-checkbox {
-        margin-bottom: 0;
+  label {
+    position: absolute;
+    top: 12px;
+    left: 7px;
+    pointer-events: none;
+    transition: text-shadow 35ms ease-in;
+    transition: transform 35ms ease-in;
+
+    &.focused {
+      transform: translateY(-20px);
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    }
+  }
+
+  .ingredient-checkbox {
+    margin-bottom: 0;
+
+    &.populated {
+      input {
+        border-bottom-left-radius: 0;
       }
-
       button {
-        background-color: white;
-        color: $primary-dark;
-        border-color: $secondary-lightgray;
-        color: $primary-lightgray;
-        cursor: default;
-
-        &.text-entered {
-          background-color: $accent-blue;
-          color: white;
-          cursor: pointer;
-        }
-      }
-
-      ul.search-results {
+        border-bottom-right-radius: 0;
       }
     }
 
-    ul.ingredients-list {
-      flex-basis: 0;
-      flex-grow: 1;
-      margin-left: 0.5rem;
+    button {
+      background-color: white;
+      color: $primary-dark;
+      border-color: $secondary-lightgray;
+      color: $primary-lightgray;
+      cursor: default;
 
-      li {
-        border: 2px solid $primary-lightgray;
-        border-top: none;
-        font-size: 1rem;
-        padding-left: 0.5rem;
-        height: 40px;
-        display: flex;
-        align-items: center;
+      &.text-entered {
+        background-color: $accent-blue;
+        color: white;
+        cursor: pointer;
       }
-      li:first-child {
-        border-top: 2px solid $primary-lightgray;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-      }
-      li:last-child {
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-      }
+    }
+  }
+
+  ul.ingredients-list {
+    li {
+      border: 1px solid $secondary-lightgray;
+      border-left: 2px solid $primary-lightgray;
+      border-top: none;
+      font-size: 1rem;
+      padding-left: 0.5rem;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    li:first-child {
+      // border-top-left-radius: 5px;
+      // border-top-right-radius: 5px;
+    }
+    li:last-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
     }
   }
 }

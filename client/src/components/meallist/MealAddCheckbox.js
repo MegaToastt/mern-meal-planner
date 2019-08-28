@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
   const [ingredient, setIngredient] = useState("");
+  const [focused, setFocused] = useState(false);
+
+  useEffect(() => {
+    if (!focused && ingredient !== "") setFocused(true);
+  });
 
   const handleClick = e => {
     e.preventDefault();
@@ -21,35 +26,41 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
 
   return (
     <div className="MealAddCheckbox">
-      <label htmlFor="ingredient">Ingredients</label>
-      <div className="content">
-        <div className="inputs">
-          <div className="inline-input ingredient-checkbox">
-            <input
-              type="text"
-              name="ingredient"
-              onChange={e => setIngredient(e.target.value)}
-              onKeyPress={e => handleKeyPress(e)}
-              value={ingredient}
-            />
-            <button
-              type="button"
-              className={ingredient === "" ? "" : "text-entered"}
-              onClick={handleClick}
-            >
-              Add
-            </button>
-          </div>
-          <ul className="search-results"></ul>
-        </div>
-        <ul className="ingredients-list">
-          {ingredientList.map(ing => (
-            <li key={ing.name}>
-              <span>{ing.name}</span>
-            </li>
-          ))}
-        </ul>
+      <label htmlFor="ingredient" className={focused ? "focused" : ""}>
+        Ingredients
+      </label>
+      <div
+        className={
+          "inline-input ingredient-checkbox" +
+          (ingredientList.length ? " populated" : "")
+        }
+      >
+        <input
+          type="text"
+          name="ingredient"
+          onChange={e => setIngredient(e.target.value)}
+          onKeyPress={e => handleKeyPress(e)}
+          value={ingredient}
+          onFocus={() => setFocused(true)}
+          onBlur={() => {
+            if (ingredient === "") setFocused(false);
+          }}
+        />
+        <button
+          type="button"
+          className={ingredient === "" ? "" : "text-entered"}
+          onClick={handleClick}
+        >
+          Add
+        </button>
       </div>
+      <ul className="ingredients-list">
+        {ingredientList.map(ing => (
+          <li key={ing.name}>
+            <span>{ing.name}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

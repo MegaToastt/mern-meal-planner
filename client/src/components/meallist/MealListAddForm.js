@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addMeal } from "../../redux/actions/mealActions";
 import MealAddCheckbox from "./MealAddCheckbox";
+import FloatingLabelInput from "./FloatingLabelInput";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -44,17 +45,17 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
         {isAuthenticated && <Redirect to="/" />}
         <h2>Add Meal</h2>
         <form onSubmit={handleSubmit} className="form">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
+          <FloatingLabelInput
             name="name"
+            title="Name"
+            type="text"
             onChange={e => setName(e.target.value)}
             value={name}
           />
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
+          <FloatingLabelInput
             name="description"
+            title="Description"
+            type="text"
             onChange={e => setDescription(e.target.value)}
             value={description}
           />
@@ -62,31 +63,31 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
             ingredientList={ingredientList}
             addIngredient={addIngredient}
           />
-          <label htmlFor="calories">Calories</label>
-          <input
-            type="number"
+          <FloatingLabelInput
             name="calories"
+            type="number"
+            title="Calories"
             onChange={e => setCalories(e.target.value)}
             value={calories}
           />
-          <label htmlFor="protein">Protein</label>
-          <input
-            type="number"
+          <FloatingLabelInput
             name="protein"
+            type="number"
+            title="Protein"
             onChange={e => setProtein(e.target.value)}
             value={protein}
           />
-          <label htmlFor="fat">Fat</label>
-          <input
-            type="number"
+          <FloatingLabelInput
             name="fat"
-            onChange={e => setFat(e.target.value)}
+            type="number"
+            title="Fat"
+            onChange={e => setFat(e.targt.value)}
             value={fat}
           />
-          <label htmlFor="carbs">Carbs</label>
-          <input
-            type="number"
+          <FloatingLabelInput
             name="carbs"
+            type="number"
+            title="Carbs"
             onChange={e => setCarbs(e.target.value)}
             value={carbs}
           />

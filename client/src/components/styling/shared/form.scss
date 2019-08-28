@@ -29,12 +29,14 @@
 
   input {
     font-size: 1rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 2rem;
     padding-left: 0.5rem;
     border-radius: 5px;
     // border: 1px solid $primary-gray;
     border: none;
     background-color: $secondary-lightgray;
+    width: 100%;
+    box-sizing: border-box;
 
     font-family: $body-font;
     height: 40px;
@@ -54,6 +56,16 @@
         color: $primary-gray;
         border: 1px solid $primary-gray;
       }
+    }
+
+    &[type="number"] {
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
     }
   }
 
@@ -104,5 +116,23 @@
   h2 {
     margin-bottom: 1rem;
     font-weight: bold;
+  }
+}
+
+.FloatingLabelInput {
+  position: relative;
+  label {
+    position: absolute;
+    top: 12px;
+    left: 7px;
+    pointer-events: none;
+    transition: text-shadow 35ms ease-in;
+    transition: transform 35ms ease-in;
+
+    &.focused {
+      transform: translateY(-20px);
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    }
   }
 }
