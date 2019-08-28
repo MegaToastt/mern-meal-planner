@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MealListEditForm from "./MealListEditForm";
 import MealListAddForm from "./MealListAddForm";
 
-const Sidebar = ({ currentView }) => {
+const Sidebar = ({ currentView, currentDisplayed }) => {
   return (
     <div className="Sidebar">
-      {currentView === "Add" && <MealListAddForm />}
-      {currentView === "Edit" && <MealListEditForm />}
+      {currentDisplayed === "Add" && <MealListAddForm />}
+      {currentDisplayed === "Edit" && <MealListEditForm />}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 
 const MealPlanner = ({ currentView }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarView, setSidebarView] = useState("");
 
   useEffect(() => {
     if (currentView !== "Info") setSidebarOpen(true);
@@ -18,8 +19,13 @@ const MealPlanner = ({ currentView }) => {
 
   return (
     <div className="MealPlanner">
-      <CSSTransition in={sidebarOpen} timeout={200} classNames="Sidebar-anim">
-        <Sidebar />
+      <CSSTransition
+        in={sidebarOpen}
+        timeout={200}
+        classNames="Sidebar-anim"
+        onEnter={() => setSidebarView(currentView)}
+      >
+        <Sidebar currentDisplayed={sidebarView} />
       </CSSTransition>
       <MealList />
       <div className="main-body">
