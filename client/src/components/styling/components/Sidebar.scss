@@ -3,7 +3,9 @@
   z-index: 2;
   background-color: white;
   height: 100%;
-  max-width: 350px;
+  // max-width: 350px;
+  width: 350px;
+  left: -350px;
   button {
     border: 1px solid $accent-blue;
     width: 100%;
@@ -36,4 +38,29 @@
       border: 1px solid $primary-gray;
     }
   }
+}
+
+.Sidebar-anim-enter {
+  transform: translateX(0);
+}
+.Sidebar-anim-enter-active {
+  transform: translateX(350px);
+  transition: transform 200ms ease-out;
+}
+.Sidebar-anim-exit {
+  transform: translateX(350px);
+}
+.Sidebar-anim-exit-active {
+  transform: translateX(0);
+  transition: transform 200ms ease-in;
+}
+.Sidebar-anim-exit-done {
+  opacity: 0;
+  display: none;
+  transform: translateX(0);
+}
+.Sidebar-anim-enter-done {
+  opacity: 1;
+  display: block;
+  transform: translateX(350px);
 }

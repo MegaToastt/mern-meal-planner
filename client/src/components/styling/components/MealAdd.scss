@@ -2,6 +2,7 @@
   margin-bottom: 0.6rem;
   position: relative;
   margin-bottom: 2rem;
+  width: 100%;
 
   label {
     position: absolute;
@@ -20,6 +21,7 @@
 
   .ingredient-checkbox {
     margin-bottom: 0;
+    width: 100%;
 
     &.populated {
       input {
@@ -35,6 +37,8 @@
       border-color: $secondary-lightgray;
       color: $primary-lightgray;
       cursor: default;
+      box-sizing: border-box;
+      padding: 0;
 
       &:hover {
         background-color: white;

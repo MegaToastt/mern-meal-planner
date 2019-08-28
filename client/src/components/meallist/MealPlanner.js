@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MealList from "./MealList";
 import MealInfo from "./MealListInfo";
 import PropTypes from "prop-types";
 import Header from "../Header";
 import Sidebar from "./Sidebar";
+import { CSSTransition } from "react-transition-group";
 
 import { connect } from "react-redux";
 
 const MealPlanner = ({ currentView }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (currentView !== "Info") setSidebarOpen(true);
+    else setSidebarOpen(false);
+  }, [currentView]);
+
   return (
     <div className="MealPlanner">
-      <Sidebar />
+      <CSSTransition in={sidebarOpen} timeout={200} classNames="Sidebar-anim">
+        <Sidebar />
+      </CSSTransition>
       <MealList />
       <div className="main-body">
         <Header />
