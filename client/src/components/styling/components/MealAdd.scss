@@ -1,31 +1,57 @@
 .MealAddCheckbox {
   margin-bottom: 0.6rem;
-  .ingredient-checkbox {
-    margin-bottom: 0;
-  }
-  .ingredient-checkbox.populated {
-    input {
-      border-bottom-left-radius: 0;
-    }
-    button {
-      border-bottom-right-radius: 0;
+
+  .content {
+    display: flex;
+    .inputs {
+      flex-basis: 0;
+      flex-grow: 1;
+      margin-right: 0.5rem;
+      .ingredient-checkbox {
+        margin-bottom: 0;
+      }
+
+      button {
+        background-color: white;
+        color: $primary-dark;
+        border-color: $secondary-lightgray;
+        color: $primary-lightgray;
+        cursor: default;
+
+        &.text-entered {
+          background-color: $accent-blue;
+          color: white;
+          cursor: pointer;
+        }
+      }
+
+      ul.search-results {
+      }
     }
 
-    margin-bottom: 0;
-  }
+    ul.ingredients-list {
+      flex-basis: 0;
+      flex-grow: 1;
+      margin-left: 0.5rem;
 
-  ul {
-    background-color: $primary-lightgray;
-
-    li {
-      border: 1px solid $primary-gray;
-      border-top: none;
-      font-size: 1rem;
-      padding: 0.5rem;
-    }
-    li:last-child {
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
+      li {
+        border: 2px solid $primary-lightgray;
+        border-top: none;
+        font-size: 1rem;
+        padding-left: 0.5rem;
+        height: 40px;
+        display: flex;
+        align-items: center;
+      }
+      li:first-child {
+        border-top: 2px solid $primary-lightgray;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      li:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
     }
   }
 }

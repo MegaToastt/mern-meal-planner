@@ -22,28 +22,34 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
   return (
     <div className="MealAddCheckbox">
       <label htmlFor="ingredient">Ingredients</label>
-      <div
-        className={
-          "inline-input ingredient-checkbox" +
-          (ingredientList.length > 0 ? " populated" : "")
-        }
-      >
-        <input
-          type="text"
-          name="ingredient"
-          onChange={e => setIngredient(e.target.value)}
-          onKeyPress={e => handleKeyPress(e)}
-          value={ingredient}
-        />
-        <button type="button" onClick={handleClick}>
-          Add
-        </button>
+      <div className="content">
+        <div className="inputs">
+          <div className="inline-input ingredient-checkbox">
+            <input
+              type="text"
+              name="ingredient"
+              onChange={e => setIngredient(e.target.value)}
+              onKeyPress={e => handleKeyPress(e)}
+              value={ingredient}
+            />
+            <button
+              type="button"
+              className={ingredient === "" ? "" : "text-entered"}
+              onClick={handleClick}
+            >
+              Add
+            </button>
+          </div>
+          <ul className="search-results"></ul>
+        </div>
+        <ul className="ingredients-list">
+          {ingredientList.map(ing => (
+            <li key={ing.name}>
+              <span>{ing.name}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul>
-        {ingredientList.map(ing => (
-          <li key={ing.name}>{ing.name}</li>
-        ))}
-      </ul>
     </div>
   );
 };

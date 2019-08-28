@@ -21,17 +21,23 @@
 
   label {
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: $primary-gray;
+    font-family: $header-font;
+    margin-bottom: 0.2rem;
   }
 
   input {
     font-size: 1rem;
-    margin-bottom: 0.6rem;
-    padding: 0.5rem;
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
     border-radius: 5px;
-    border: 1px solid $primary-gray;
+    // border: 1px solid $primary-gray;
+    border: none;
+    background-color: $secondary-lightgray;
+
     font-family: $body-font;
+    height: 40px;
 
     &[type="submit"] {
       background-color: $accent-blue;
