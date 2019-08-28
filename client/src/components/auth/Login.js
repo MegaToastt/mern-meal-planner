@@ -5,6 +5,7 @@ import { login } from "../../redux/actions/authActions";
 import Alertbox from "../Alertbox";
 import HeaderLoggedout from "../HeaderLoggedout";
 import { clearAlerts } from "../../redux/actions/alertActions";
+import FloatingLabelInput from "../meallist/FloatingLabelInput";
 
 import { Redirect } from "react-router-dom";
 
@@ -30,15 +31,15 @@ const Login = ({ login, isAuthenticated, clearAlerts }) => {
           {isAuthenticated && <Redirect to="/" />}
           <h2>Login</h2>
           <form className="form" onSubmit={handleSubmit}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
+            <FloatingLabelInput
               name="email"
+              title="Email"
+              type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
-            <label htmlFor="password">Password</label>
-            <input
+            <FloatingLabelInput
+              title="Password"
               type="password"
               name="password"
               value={password}
