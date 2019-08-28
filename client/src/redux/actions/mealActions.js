@@ -90,7 +90,7 @@ export const deleteMeal = id => async dispatch => {
   try {
     const res = await axios.delete(`/api/meals/${id}`);
     dispatch({ type: MEAL_DELETED, payload: res.data });
-    dispatch({ type: SET_CURRENT_VIEW, payload: "info" });
+    dispatch({ type: SET_CURRENT_VIEW, payload: "Info" });
   } catch (error) {
     error.response.data.errors.forEach(error =>
       dispatch({
