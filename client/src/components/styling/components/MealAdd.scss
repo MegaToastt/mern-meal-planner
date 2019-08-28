@@ -5,16 +5,16 @@
 
   label {
     position: absolute;
-    top: 12px;
+    // top: 12px;
+    top: 16px;
     left: 7px;
     pointer-events: none;
     transition: text-shadow 35ms ease-in;
     transition: transform 35ms ease-in;
+    transform-origin: top left;
 
     &.focused {
-      transform: translateY(-20px);
-      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
-        1px 1px 0 #fff;
+      transform: translateY(-10px) scale(0.6);
     }
   }
 
