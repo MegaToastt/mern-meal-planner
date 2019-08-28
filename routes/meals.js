@@ -46,10 +46,12 @@ router.post(
   [
     auth(),
     check("name")
-      .exists()
+      .not()
+      .isEmpty()
       .withMessage("Name must be present"),
     check("calories")
-      .exists()
+      .not()
+      .isEmpty()
       .withMessage("Calories must be selected")
   ],
   async (req, res) => {
@@ -94,7 +96,6 @@ router.post(
 router.delete("/:id", auth(), async (req, res) => {
   try {
     const meal = await models.Meal.findById(req.params.id);
-    console.log("okok");
     if (!meal)
       return res
         .status(404)
@@ -108,9 +109,7 @@ router.delete("/:id", auth(), async (req, res) => {
     )
       return res.status(401).send({ errors: [{ msg: "Not authorized" }] });
 
-    console.log("okok");
     await meal.remove();
-    console.log("okok");
 
     return res.json({ _id: req.params.id });
   } catch (error) {
@@ -158,10 +157,12 @@ router.patch(
   [
     auth(),
     check("name")
-      .exists()
+      .not()
+      .isEmpty()
       .withMessage("Name must be present"),
     check("calories")
-      .exists()
+      .not()
+      .isEmpty()
       .withMessage("Calories must be entered")
   ],
   async (req, res) => {
