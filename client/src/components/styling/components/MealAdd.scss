@@ -1,5 +1,4 @@
 .MealAddCheckbox {
-  margin-bottom: 0.6rem;
   position: relative;
   margin-bottom: 2rem;
   width: 100%;
@@ -22,6 +21,7 @@
   .ingredient-checkbox {
     margin-bottom: 0;
     width: 100%;
+    display: flex;
 
     &.populated {
       input {
@@ -30,6 +30,10 @@
       button {
         border-bottom-right-radius: 0;
       }
+    }
+
+    input {
+      flex: 1;
     }
 
     button {
@@ -41,6 +45,7 @@
       padding: 0;
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
+      width: 70px;
 
       &:hover {
         background-color: white;

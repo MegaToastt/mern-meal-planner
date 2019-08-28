@@ -6,7 +6,8 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
   const [focused, setFocused] = useState(false);
 
   useEffect(() => {
-    if (!focused && ingredient !== "") setFocused(true);
+    if (!focused && (ingredient !== "" && ingredient !== null))
+      setFocused(true);
   }, [focused, ingredient]);
 
   const handleClick = e => {
@@ -43,7 +44,7 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
           value={ingredient}
           onFocus={() => setFocused(true)}
           onBlur={() => {
-            if (ingredient === "") setFocused(false);
+            if (ingredient === "" || ingredient === null) setFocused(false);
           }}
         />
         <button
