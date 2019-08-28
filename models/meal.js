@@ -7,16 +7,20 @@ const mealSchema = new mongoose.Schema({
   },
   calories: {
     type: Number,
-    required: true
+    required: true,
+    default: 0
   },
   protein: {
-    type: Number
+    type: Number,
+    default: 0
   },
   carbs: {
-    type: Number
+    type: Number,
+    default: 0
   },
   fat: {
-    type: Number
+    type: Number,
+    default: 0
   },
   description: {
     type: String
