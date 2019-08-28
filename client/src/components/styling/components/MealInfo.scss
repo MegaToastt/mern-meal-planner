@@ -1,4 +1,18 @@
 .MealInfo {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "info stats";
+  grid-gap: 30px;
+  div {
+    border: 1px solid red;
+  }
+  &-info {
+    grid-area: info;
+  }
+  &-stats {
+    grid-area: stats;
+  }
+
   p {
     margin-bottom: 0.4rem;
   }
