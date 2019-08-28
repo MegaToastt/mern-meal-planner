@@ -1,22 +1,20 @@
 import React from "react";
 import MealList from "./MealList";
 import MealInfo from "./MealListInfo";
-import MealListAddForm from "./MealListAddForm";
-import MealListEditForm from "./MealListEditForm";
 import PropTypes from "prop-types";
 import Header from "../Header";
+import Sidebar from "./Sidebar";
 
 import { connect } from "react-redux";
 
 const MealPlanner = ({ currentView }) => {
   return (
     <div className="MealPlanner">
+      <Sidebar />
       <MealList />
       <div className="main-body">
         <Header />
-        {currentView === "Info" && <MealInfo />}
-        {currentView === "Add" && <MealListAddForm />}
-        {currentView === "Edit" && <MealListEditForm />}
+        <MealInfo />
       </div>
     </div>
   );
