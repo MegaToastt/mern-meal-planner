@@ -35,9 +35,10 @@
       padding: 0;
       padding-left: 0.6rem;
       // margin-top: 0.3rem;
-      padding-top: 0.3rem;
+      // padding-top: 0.3rem;
       position: relative;
       border-left: 2px solid $primary-gray;
+      height: 30px;
 
       &:last-child {
         // border-left-color: transparent;
@@ -59,8 +60,8 @@
       position: absolute;
       content: "";
       border-left: 2px solid $primary-gray;
-      height: 1.2rem;
-      bottom: 10px;
+      height: 17px;
+      bottom: 13px;
     }
   }
 
