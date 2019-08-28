@@ -33,7 +33,6 @@ export const loadMeals = () => async dispatch => {
 export const loadIngredients = () => async dispatch => {
   try {
     const res = await axios.get(`/api/ingredients/me`);
-    console.log(res.data);
     dispatch({ type: INGREDIENTS_LOADED, payload: res.data });
   } catch (error) {
     error.response.data.errors.forEach(error =>
