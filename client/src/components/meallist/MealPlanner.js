@@ -24,7 +24,7 @@ const MealPlanner = ({ currentView }) => {
         timeout={200}
         classNames="Sidebar-anim"
         onEnter={() => setSidebarView(currentView)}
-        onExit={() => setSidebarView("")}
+        onExited={() => setSidebarView(currentView)}
       >
         <Sidebar currentDisplayed={sidebarView} />
       </CSSTransition>
