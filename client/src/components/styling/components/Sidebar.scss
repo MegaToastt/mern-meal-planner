@@ -49,10 +49,12 @@
 }
 .Sidebar-anim-exit {
   transform: translateX(350px);
+  opacity: 1;
 }
 .Sidebar-anim-exit-active {
   transform: translateX(0);
   transition: transform 200ms ease-in;
+  opacity: 1;
 }
 .Sidebar-anim-exit-done {
   opacity: 0;
