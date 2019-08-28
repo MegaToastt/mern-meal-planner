@@ -17,7 +17,7 @@ export const setCurrentMeal = id => async dispatch => {
 };
 
 export const setCurrentView = view => async dispatch => {
-  if (view === "Add") dispatch({ type: CLEAR_CURRENT_MEAL });
+  // if (view === "Add") dispatch({ type: CLEAR_CURRENT_MEAL });
   dispatch({ type: SET_CURRENT_VIEW, payload: view });
 };
 
