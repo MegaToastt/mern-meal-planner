@@ -21,6 +21,14 @@ body {
   height: 100%;
 }
 
+.flex-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
 .main-container {
   padding-left: 4rem;
   padding-top: 3rem;

@@ -26,7 +26,7 @@ const Register = ({ register, isAuthenticated, clearAlerts }) => {
   return (
     <Fragment>
       <HeaderLoggedout />
-      <div className="container-med">
+      <div className="flex-center-container">
         <Alertbox />
         <div className="form-auth-container">
           {isAuthenticated && <Redirect to="/" />}
