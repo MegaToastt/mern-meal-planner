@@ -6,7 +6,8 @@ import {
   CLEAR_CURRENT_MEAL,
   MEAL_DELETED,
   CURRENT_MEAL_EDITED,
-  ADD_ALERT
+  ADD_ALERT,
+  INGREDIENTS_LOADED
 } from "./actionTypes";
 import axios from "axios";
 
@@ -27,6 +28,20 @@ export const loadMeals = () => async dispatch => {
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
+  }
+};
+
+export const loadIngredients = userid => async dispatch => {
+  try {
+    const res = await axios.get(`/api/ingredients/user/${userid}`);
+    dispatch({ type: INGREDIENTS_LOADED, payload: res.data });
+  } catch (error) {
+    error.response.data.errors.forEach(error =>
+      dispatch({
+        type: ADD_ALERT,
+        payload: { message: error.msg, style: "danger" }
+      })
+    );
   }
 };
 
