@@ -7,13 +7,15 @@ import {
   LOGOUT,
   MEAL_DELETED,
   CURRENT_MEAL_EDITED,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  INGREDIENTS_LOADED
 } from "../actions/actionTypes";
 
 const initialState = {
   currentMeal: null,
   currentView: "Info",
   meals: [],
+  ingredients: [],
   loading: true
 };
 
@@ -68,6 +70,11 @@ export default function mealReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         loading: false
+      };
+    case INGREDIENTS_LOADED:
+      return {
+        ...state,
+        ingredients: payload
       };
     default:
       return state;
