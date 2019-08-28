@@ -7,7 +7,7 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
 
   useEffect(() => {
     if (!focused && ingredient !== "") setFocused(true);
-  }[focused, ingredient]);
+  }, [focused, ingredient]);
 
   const handleClick = e => {
     e.preventDefault();
