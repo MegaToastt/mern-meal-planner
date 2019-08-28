@@ -32,10 +32,16 @@
 
     button {
       background-color: white;
-      color: $primary-dark;
       border-color: $secondary-lightgray;
       color: $primary-lightgray;
       cursor: default;
+
+      &:hover {
+        background-color: white;
+        border-color: $secondary-lightgray;
+        color: $primary-lightgray;
+        cursor: default;
+      }
 
       &.text-entered {
         background-color: $accent-blue;

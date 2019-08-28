@@ -20,7 +20,7 @@
   flex-direction: column;
 
   label {
-    text-transform: uppercase;
+    // text-transform: uppercase;
     font-size: 1rem;
     color: $primary-gray;
     font-family: $header-font;
@@ -47,6 +47,7 @@
       background-color: $accent-blue;
       color: white;
       border: 1px solid $accent-blue;
+      padding: 0;
 
       transition: 0.05s ease-in color;
       transition: 0.05s ease-in background;

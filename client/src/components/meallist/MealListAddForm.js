@@ -13,10 +13,10 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [ingredientList, setIngredientList] = useState([]);
-  const [calories, setCalories] = useState(0);
-  const [protein, setProtein] = useState(0);
-  const [fat, setFat] = useState(0);
-  const [carbs, setCarbs] = useState(0);
+  const [calories, setCalories] = useState("");
+  const [protein, setProtein] = useState("");
+  const [fat, setFat] = useState("");
+  const [carbs, setCarbs] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
