@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setCurrentView } from "../../redux/actions/mealActions";
 import { Redirect } from "react-router-dom";
-import { loadMeals } from "../../redux/actions/mealActions";
+import { loadMeals, loadIngredients } from "../../redux/actions/mealActions";
 import MealListItem from "./MealListItem";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -13,11 +13,13 @@ const MealList = ({
   setCurrentView,
   currentView,
   loadMeals,
-  isAuthenticated
+  isAuthenticated,
+  loadIngredients
 }) => {
   useEffect(() => {
     loadMeals();
-  }, [loadMeals]);
+    loadIngredients();
+  }, [loadMeals, loadIngredients]);
 
   return (
     <div className="MealList">
@@ -65,7 +67,8 @@ MealList.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   setCurrentView: PropTypes.func.isRequired,
   loadMeals: PropTypes.func.isRequired,
-  currentView: PropTypes.string.isRequired
+  currentView: PropTypes.string.isRequired,
+  loadIngredients: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -76,5 +79,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setCurrentView, loadMeals }
+  { setCurrentView, loadMeals, loadIngredients }
 )(MealList);
