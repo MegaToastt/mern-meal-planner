@@ -31,7 +31,7 @@ export const loadMeals = () => async dispatch => {
   }
 };
 
-export const loadIngredients = userid => async dispatch => {
+export const loadIngredients = () => async dispatch => {
   try {
     const res = await axios.get(`/api/ingredients/me`);
     console.log(res.data);
