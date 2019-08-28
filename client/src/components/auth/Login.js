@@ -14,7 +14,7 @@ const Login = ({ login, isAuthenticated, clearAlerts }) => {
 
   useEffect(() => {
     clearAlerts();
-  }, []);
+  }, [clearAlerts]);
 
   const handleSubmit = e => {
     e.preventDefault();

@@ -15,7 +15,7 @@ const Register = ({ register, isAuthenticated, clearAlerts }) => {
 
   useEffect(() => {
     clearAlerts();
-  }, []);
+  }, [clearAlerts]);
 
   const handleSubmit = e => {
     e.preventDefault();
