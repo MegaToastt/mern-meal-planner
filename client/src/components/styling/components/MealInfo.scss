@@ -3,9 +3,6 @@
   grid-template-columns: 2fr 3fr;
   grid-template-areas: "info stats";
   grid-gap: 30px;
-  div {
-    border: 1px solid red;
-  }
   &-info {
     grid-area: info;
   }
