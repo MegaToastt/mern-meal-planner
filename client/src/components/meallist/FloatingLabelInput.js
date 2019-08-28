@@ -5,7 +5,7 @@ const FloatingLabelInput = ({ name, title, type, onChange, value }) => {
   const [focused, setFocused] = useState(false);
 
   useEffect(() => {
-    if (!focused && value !== "") setFocused(true);
+    if (!focused && (value !== "" && value !== null)) setFocused(true);
   }, [focused, value]);
 
   return (
@@ -19,7 +19,7 @@ const FloatingLabelInput = ({ name, title, type, onChange, value }) => {
         value={value}
         onFocus={() => setFocused(true)}
         onBlur={() => {
-          if (value === "") setFocused(false);
+          if (value === "" || value === null) setFocused(false);
         }}
       />
     </div>
