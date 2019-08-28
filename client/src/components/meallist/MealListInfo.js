@@ -11,31 +11,33 @@ const MealListInfo = ({ currentMeal }) => {
   if (currentMeal)
     return (
       <PerfectScrollbar style={{ flex: 1 }}>
-        <Alertbox />
         <div className="MealInfo main-container">
-          <h2>{currentMeal.name}</h2>
-          {currentMeal.description && (
-            <Fragment>
-              <h3>Description</h3>
-              <p>{currentMeal.description}</p>
-            </Fragment>
-          )}
-          <h3>Ingredients</h3>
-          <ul>
-            {currentMeal.ingredients.length ? (
-              currentMeal.ingredients.map(ing => (
-                <li key={ing._id}>{ing.name}</li>
-              ))
-            ) : (
-              <li>No ingredients</li>
+          <div className="MealInfo-info">
+            <h2>{currentMeal.name}</h2>
+            {currentMeal.description && (
+              <Fragment>
+                <h3>Description</h3>
+                <p>{currentMeal.description}</p>
+              </Fragment>
             )}
-          </ul>
-          <h3>Nutrition</h3>
-          <p>Calories: {currentMeal.calories}</p>
-          <p>Protein: {currentMeal.protein}</p>
-          <p>Fat: {currentMeal.fat}</p>
-          <p>Carbs: {currentMeal.carbs}</p>
-          <MealInfoControls />
+            <h3>Ingredients</h3>
+            <ul>
+              {currentMeal.ingredients.length ? (
+                currentMeal.ingredients.map(ing => (
+                  <li key={ing._id}>{ing.name}</li>
+                ))
+              ) : (
+                <li>No ingredients</li>
+              )}
+            </ul>
+            <h3>Nutrition</h3>
+            <p>Calories: {currentMeal.calories}</p>
+            <p>Protein: {currentMeal.protein}</p>
+            <p>Fat: {currentMeal.fat}</p>
+            <p>Carbs: {currentMeal.carbs}</p>
+            <MealInfoControls />
+          </div>
+          <div className="MealInfo-stats">Stats here</div>
         </div>
       </PerfectScrollbar>
     );
