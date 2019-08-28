@@ -48,6 +48,7 @@
       color: white;
       border: 1px solid $accent-blue;
       padding: 0;
+      margin-bottom: 1rem;
 
       transition: 0.05s ease-in color;
       transition: 0.05s ease-in background;
@@ -82,29 +83,6 @@
       display: inline-block;
       margin-bottom: 0;
       flex: 1;
-    }
-
-    button {
-      padding: 0 3rem;
-      margin: 0;
-      display: inline-block;
-      border: 1px solid $accent-blue;
-      border-left: none;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-      background-color: $accent-blue;
-      color: white;
-      transition: 0.05s ease-in color;
-      transition: 0.05s ease-in background;
-
-      cursor: pointer;
-
-      &:hover {
-        background-color: white;
-        color: $primary-gray;
-        border: 1px solid $primary-gray;
-        border-left: none;
-      }
     }
   }
 }
