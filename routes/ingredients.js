@@ -13,20 +13,15 @@ router.get("/", auth("Admin"), async (req, res) => {
   }
 });
 
-router.get("/user/:id", auth(), async (req, res) => {
+router.get("/me", auth(), async (req, res) => {
   try {
-    const ingredients = await models.Ingredient.find({ user: req.params.id });
-
-    if (
-      req.user.role.toString() !== "Admin" &&
-      req.user._id.toString() !== req.params.id.toString()
-    )
-      return res
-        .status(401)
-        .json({ errors: [{ msg: "Not authorized to perform this action" }] });
+    const ingredients = await models.Ingredient.find({
+      user: req.user._id
+    }).select("-user");
 
     return res.send(ingredients);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 });
