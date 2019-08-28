@@ -81,7 +81,7 @@ const MealListAddForm = ({ isAuthenticated, addMeal }) => {
             name="fat"
             type="number"
             title="Fat"
-            onChange={e => setFat(e.targt.value)}
+            onChange={e => setFat(e.target.value)}
             value={fat}
           />
           <FloatingLabelInput
