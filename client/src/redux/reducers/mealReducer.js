@@ -8,12 +8,17 @@ import {
   MEAL_DELETED,
   CURRENT_MEAL_EDITED,
   REGISTER_SUCCESS,
-  INGREDIENTS_LOADED
+  INGREDIENTS_LOADED,
+  OPEN_SIDEBAR,
+  CLOSE_SIDEBAR,
+  SET_SIDEBAR_VIEW
 } from "../actions/actionTypes";
 
 const initialState = {
   currentMeal: null,
   currentView: "Info",
+  sidebarOpen: false,
+  sidebarView: "",
   meals: [],
   ingredients: [],
   loading: true
@@ -36,7 +41,8 @@ export default function mealReducer(state = initialState, { type, payload }) {
         ...state,
         currentMeal: payload,
         meals: [...state.meals, payload],
-        loading: false
+        loading: false,
+        sidebarOpen: false
       };
     case CURRENT_MEAL_EDITED:
       return {
@@ -45,7 +51,8 @@ export default function mealReducer(state = initialState, { type, payload }) {
         meals: state.meals.map(meal =>
           meal._id === payload._id ? payload : meal
         ),
-        loading: false
+        loading: false,
+        sidebarOpen: false
       };
     case SET_CURRENT_VIEW:
       return {
@@ -76,6 +83,15 @@ export default function mealReducer(state = initialState, { type, payload }) {
         ...state,
         ingredients: payload
       };
+    case OPEN_SIDEBAR:
+      return {
+        ...state,
+        sidebarOpen: true
+      };
+    case CLOSE_SIDEBAR:
+      return { ...state, sidebarOpen: false };
+    case SET_SIDEBAR_VIEW:
+      return { ...state, sidebarView: payload };
     default:
       return state;
   }

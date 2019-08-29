@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { editMeal, setCurrentView } from "../../redux/actions/mealActions";
+import { editMeal, closeSidebar } from "../../redux/actions/mealActions";
 import MealForm from "./MealForm";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -12,12 +12,10 @@ const MealListEditForm = ({
   isAuthenticated,
   editMeal,
   currentMeal,
-  setCurrentView
+  closeSidebar
 }) => {
   const handleSubmit = (e, meal) => {
     e.preventDefault();
-    console.log("click");
-    console.log(meal);
     editMeal({
       ...meal
     });
@@ -29,7 +27,7 @@ const MealListEditForm = ({
         {isAuthenticated && <Redirect to="/" />}
         <h2>Edit Meal</h2>
         <MealForm handleSubmit={handleSubmit} currentMeal={currentMeal} />
-        <button onClick={() => setCurrentView("Info")} className="danger">
+        <button onClick={closeSidebar} className="danger">
           Cancel
         </button>
       </div>
@@ -40,8 +38,7 @@ const MealListEditForm = ({
 MealListEditForm.propTypes = {
   editMeal: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  currentMeal: PropTypes.object.isRequired,
-  setCurrentView: PropTypes.func.isRequired
+  currentMeal: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -51,5 +48,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editMeal, setCurrentView }
+  { editMeal, closeSidebar }
 )(MealListEditForm);

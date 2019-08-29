@@ -111,6 +111,7 @@
   .MealList-addmealbutton,
   .MealList-addmealbutton:active,
   .MealList-addmealbutton:focus {
+    cursor: pointer;
     height: 2.5rem;
     border: none;
     width: 70%;

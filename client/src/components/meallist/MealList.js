@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setCurrentView } from "../../redux/actions/mealActions";
+import { setCurrentView, openSidebar } from "../../redux/actions/mealActions";
 import { Redirect } from "react-router-dom";
 import { loadMeals, loadIngredients } from "../../redux/actions/mealActions";
 import MealListItem from "./MealListItem";
@@ -10,8 +10,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 const MealList = ({
   meal,
-  setCurrentView,
-  currentView,
+  openSidebar,
   loadMeals,
   isAuthenticated,
   loadIngredients
@@ -48,11 +47,8 @@ const MealList = ({
       {!meal.loading && (
         <div className="MealList-buttoncontainer">
           <button
-            className={
-              "MealList-addmealbutton" +
-              (currentView === "Add" ? " MealList-addmealbutton-active" : "")
-            }
-            onClick={() => setCurrentView("Add")}
+            className="MealList-addmealbutton"
+            onClick={() => openSidebar("Add")}
           >
             Add Meal
           </button>
@@ -65,7 +61,6 @@ const MealList = ({
 MealList.propTypes = {
   meal: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  setCurrentView: PropTypes.func.isRequired,
   loadMeals: PropTypes.func.isRequired,
   currentView: PropTypes.string.isRequired,
   loadIngredients: PropTypes.func.isRequired
@@ -79,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setCurrentView, loadMeals, loadIngredients }
+  { loadMeals, loadIngredients, openSidebar }
 )(MealList);

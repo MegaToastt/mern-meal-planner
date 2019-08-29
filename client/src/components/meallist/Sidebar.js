@@ -4,21 +4,21 @@ import { connect } from "react-redux";
 import MealListEditForm from "./MealListEditForm";
 import MealListAddForm from "./MealListAddForm";
 
-const Sidebar = ({ currentView, currentDisplayed }) => {
+const Sidebar = ({ sidebarView }) => {
   return (
     <div className="Sidebar">
-      {currentDisplayed === "Add" && <MealListAddForm />}
-      {currentDisplayed === "Edit" && <MealListEditForm />}
+      {sidebarView === "Add" && <MealListAddForm />}
+      {sidebarView === "Edit" && <MealListEditForm />}
     </div>
   );
 };
 
 Sidebar.propTypes = {
-  currentView: PropTypes.string.isRequired
+  sidebarView: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  currentView: state.meal.currentView
+  sidebarView: state.meal.sidebarView
 });
 
 export default connect(

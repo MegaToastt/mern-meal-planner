@@ -38,6 +38,7 @@
 
     button {
       background-color: white;
+      border: 1px solid $secondary-lightgray;
       border-color: $secondary-lightgray;
       color: $primary-lightgray;
       cursor: default;
@@ -58,6 +59,12 @@
         background-color: $accent-blue;
         color: white;
         cursor: pointer;
+        &:hover {
+          background-color: white;
+          border-color: $primary-lightgray;
+          color: $primary-gray;
+          cursor: pointer;
+        }
       }
     }
   }

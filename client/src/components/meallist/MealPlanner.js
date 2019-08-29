@@ -1,32 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MealList from "./MealList";
 import MealInfo from "./MealListInfo";
 import PropTypes from "prop-types";
 import Header from "../Header";
 import Sidebar from "./Sidebar";
 import { CSSTransition } from "react-transition-group";
+import {
+  closeSidebar,
+  clearSidebarView
+} from "../../redux/actions/mealActions";
 
 import { connect } from "react-redux";
 
-const MealPlanner = ({ currentView }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarView, setSidebarView] = useState("");
-
-  useEffect(() => {
-    if (currentView !== "Info") setSidebarOpen(true);
-    else setSidebarOpen(false);
-  }, [currentView]);
-
+const MealPlanner = ({ sidebarOpen, closeSidebar, clearSidebarView }) => {
   return (
     <div className="MealPlanner">
       <CSSTransition
         in={sidebarOpen}
         timeout={200}
         classNames="Sidebar-anim"
-        onEnter={() => setSidebarView(currentView)}
-        onExited={() => setSidebarView(currentView)}
+        // onEnter={() => setSidebarView(currentView)}
+        onExited={clearSidebarView}
       >
-        <Sidebar currentDisplayed={sidebarView} />
+        <Sidebar />
       </CSSTransition>
       <MealList />
       <div className="main-body">
@@ -38,14 +34,14 @@ const MealPlanner = ({ currentView }) => {
 };
 
 MealPlanner.propTypes = {
-  currentView: PropTypes.string.isRequired
+  sidebarOpen: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  currentView: state.meal.currentView
+  sidebarOpen: state.meal.sidebarOpen
 });
 
 export default connect(
   mapStateToProps,
-  null
+  { closeSidebar, clearSidebarView }
 )(MealPlanner);

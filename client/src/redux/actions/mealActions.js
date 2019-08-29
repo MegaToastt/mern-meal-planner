@@ -6,7 +6,10 @@ import {
   MEAL_DELETED,
   CURRENT_MEAL_EDITED,
   ADD_ALERT,
-  INGREDIENTS_LOADED
+  INGREDIENTS_LOADED,
+  SET_SIDEBAR_VIEW,
+  OPEN_SIDEBAR,
+  CLOSE_SIDEBAR
 } from "./actionTypes";
 import axios from "axios";
 
@@ -19,6 +22,15 @@ export const setCurrentView = view => async dispatch => {
   // if (view === "Add") dispatch({ type: CLEAR_CURRENT_MEAL });
   dispatch({ type: SET_CURRENT_VIEW, payload: view });
 };
+
+export const openSidebar = view => async dispatch => {
+  dispatch({ type: SET_SIDEBAR_VIEW, payload: view });
+  dispatch({ type: OPEN_SIDEBAR });
+};
+
+export const closeSidebar = () => ({ type: CLOSE_SIDEBAR });
+
+export const clearSidebarView = () => ({ type: SET_SIDEBAR_VIEW, payload: "" });
 
 export const loadMeals = () => async dispatch => {
   try {
