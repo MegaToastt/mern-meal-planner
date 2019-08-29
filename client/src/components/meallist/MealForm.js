@@ -39,6 +39,10 @@ const MealForm = ({ handleSubmit, currentMeal }) => {
     setIngredientList([...ingredientList, { name: ingredient }]);
   };
 
+  const removeIngredient = name => {
+    setIngredientList(ingredientList.filter(ing => ing.name !== name));
+  };
+
   return (
     <form onSubmit={e => handleSubmit(e, getMeal())} className="form">
       <FloatingLabelInput
@@ -58,6 +62,7 @@ const MealForm = ({ handleSubmit, currentMeal }) => {
       <MealAddCheckbox
         ingredientList={ingredientList}
         addIngredient={addIngredient}
+        removeIngredient={removeIngredient}
       />
       <FloatingLabelInput
         name="calories"
