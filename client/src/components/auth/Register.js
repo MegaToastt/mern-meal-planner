@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../redux/actions/authActions";
 import Alertbox from "../Alertbox";
-import HeaderLoggedout from "../HeaderLoggedout";
 import { clearAlerts } from "../../redux/actions/alertActions";
 import FloatingLabelInput from "../meallist/FloatingLabelInput";
 
 import { Redirect } from "react-router-dom";
+import Header from "../Header";
 
 const Register = ({ register, isAuthenticated, clearAlerts }) => {
   const [username, setUsername] = useState("");
@@ -25,7 +25,7 @@ const Register = ({ register, isAuthenticated, clearAlerts }) => {
 
   return (
     <Fragment>
-      <HeaderLoggedout />
+      <Header />
       <div className="flex-center-container">
         <Alertbox />
         <div className="form-auth-container">

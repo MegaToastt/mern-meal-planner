@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../redux/actions/authActions";
 import Alertbox from "../Alertbox";
-import HeaderLoggedout from "../HeaderLoggedout";
+import Header from "../Header";
 import { clearAlerts } from "../../redux/actions/alertActions";
 import FloatingLabelInput from "../meallist/FloatingLabelInput";
 
@@ -24,7 +24,7 @@ const Login = ({ login, isAuthenticated, clearAlerts }) => {
 
   return (
     <Fragment>
-      <HeaderLoggedout />
+      <Header />
       <div className="flex-center-container">
         <Alertbox />
         <div className="form-auth-container">

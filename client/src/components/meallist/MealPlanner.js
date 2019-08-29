@@ -1,5 +1,5 @@
 import React from "react";
-import MealList from "./MealList";
+import { Redirect } from "react-router-dom";
 import MealInfo from "./MealListInfo";
 import PropTypes from "prop-types";
 import Header from "../Header";
@@ -11,10 +11,17 @@ import {
 } from "../../redux/actions/mealActions";
 
 import { connect } from "react-redux";
+import { AUTH_ERROR } from "../../redux/actions/actionTypes";
 
-const MealPlanner = ({ sidebarOpen, closeSidebar, clearSidebarView }) => {
+const MealPlanner = ({
+  sidebarOpen,
+  closeSidebar,
+  clearSidebarView,
+  isAuthenticated
+}) => {
   return (
     <div className="MealPlanner">
+      {!isAuthenticated && <Redirect to="/login" />}
       <CSSTransition
         in={sidebarOpen}
         timeout={200}
@@ -24,7 +31,6 @@ const MealPlanner = ({ sidebarOpen, closeSidebar, clearSidebarView }) => {
       >
         <Sidebar />
       </CSSTransition>
-      <MealList />
       <div className="main-body">
         <Header />
         <MealInfo />
@@ -38,7 +44,8 @@ MealPlanner.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  sidebarOpen: state.meal.sidebarOpen
+  sidebarOpen: state.meal.sidebarOpen,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(

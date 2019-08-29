@@ -22,10 +22,6 @@ const MealList = ({
 
   return (
     <div className="MealList">
-      {!isAuthenticated && <Redirect to="/login" />}
-      <div className="brand">
-        <h1>MealManager</h1>
-      </div>
       <PerfectScrollbar>
         <ol>
           {meal.loading ? (

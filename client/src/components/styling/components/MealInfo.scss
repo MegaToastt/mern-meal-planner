@@ -1,4 +1,10 @@
 .MealInfo {
+  display: flex;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.MealInfo-main {
   display: grid;
   grid-template-columns: 2fr 3fr;
   grid-template-areas: "header header" "info stats";

@@ -7,6 +7,9 @@ import { logout } from "../redux/actions/authActions";
 const Header = ({ isAuthenticated, user, logout }) => {
   return (
     <header className="Header">
+      <div className="brand">
+        <h1>MealPlot</h1>
+      </div>
       {isAuthenticated ? (
         <div className="Header-userinfo">
           <span>Welcome, {user.username}</span>
