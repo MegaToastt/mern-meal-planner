@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MealInfoControls from "./MealInfoControls";
@@ -12,30 +12,38 @@ const MealListInfo = ({ currentMeal }) => {
     return (
       <PerfectScrollbar style={{ flex: 1 }}>
         <div className="MealInfo main-container">
-          <div className="MealInfo-info">
+          <div className="Mealinfo-header">
             <h2>{currentMeal.name}</h2>
+          </div>
+          <div className="MealInfo-info">
             {currentMeal.description && (
-              <Fragment>
+              <div className="MealInfo-section">
                 <h3>Description</h3>
                 <p>{currentMeal.description}</p>
-              </Fragment>
+              </div>
             )}
-            <h3>Ingredients</h3>
-            <ul>
-              {currentMeal.ingredients.length ? (
-                currentMeal.ingredients.map(ing => (
-                  <li key={ing._id}>{ing.name}</li>
-                ))
-              ) : (
-                <li>No ingredients</li>
-              )}
-            </ul>
-            <h3>Nutrition</h3>
-            <p>Calories: {currentMeal.calories}</p>
-            <p>Protein: {currentMeal.protein}</p>
-            <p>Fat: {currentMeal.fat}</p>
-            <p>Carbs: {currentMeal.carbs}</p>
-            <MealInfoControls />
+            <div className="MealInfo-section">
+              <h3>Ingredients</h3>
+              <ul>
+                {currentMeal.ingredients.length ? (
+                  currentMeal.ingredients.map(ing => (
+                    <li key={ing._id}>{ing.name}</li>
+                  ))
+                ) : (
+                  <li>No ingredients</li>
+                )}
+              </ul>
+            </div>
+            <div className="MealInfo-section">
+              <h3>Nutrition</h3>
+              <p>Calories: {currentMeal.calories}</p>
+              <p>Protein: {currentMeal.protein}</p>
+              <p>Fat: {currentMeal.fat}</p>
+              <p>Carbs: {currentMeal.carbs}</p>
+            </div>
+            <div className="MealInfo-section">
+              <MealInfoControls />
+            </div>
           </div>
           <div className="MealInfo-stats">Stats here</div>
         </div>

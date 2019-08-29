@@ -1,13 +1,20 @@
 .MealInfo {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  grid-template-areas: "info stats";
+  grid-template-areas: "header header" "info stats";
   grid-gap: 30px;
+  &-header {
+    grid-area: header;
+  }
   &-info {
     grid-area: info;
   }
   &-stats {
     grid-area: stats;
+  }
+
+  .MealInfo-section {
+    margin-bottom: 3rem;
   }
 
   p {
@@ -22,7 +29,7 @@
   h3 {
     text-transform: uppercase;
     font-size: 1rem;
-    margin-top: 3rem;
+    // margin-top: 3rem;
     margin-bottom: 0.4rem;
     color: $primary-gray;
   }
@@ -77,8 +84,8 @@
   }
 
   .MealInfoControls {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    // margin-top: 3rem;
+    // margin-bottom: 3rem;
 
     button {
       border: none;
