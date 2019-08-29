@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
+const MealAddCheckbox = ({
+  ingredientList,
+  addIngredient,
+  removeIngredient
+}) => {
   const [ingredient, setIngredient] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -58,7 +62,16 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
       <ul className="ingredients-list">
         {ingredientList.map(ing => (
           <li key={ing.name}>
-            <span>{ing.name}</span>
+            <span className="ing">
+              <span className="ing-name">{ing.name}</span>
+              <a
+                href="#"
+                onClick={() => removeIngredient(ing.name)}
+                className="ing-delete"
+              >
+                &#10006;
+              </a>
+            </span>
           </li>
         ))}
       </ul>
@@ -68,7 +81,8 @@ const MealAddCheckbox = ({ ingredientList, addIngredient }) => {
 
 MealAddCheckbox.propTypes = {
   ingredientList: PropTypes.array.isRequired,
-  addIngredient: PropTypes.func.isRequired
+  addIngredient: PropTypes.func.isRequired,
+  removeIngredient: PropTypes.func.isRequired
 };
 
 export default MealAddCheckbox;
