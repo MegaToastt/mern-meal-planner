@@ -8,7 +8,7 @@ A simple full stack MERN app to manage meals. Created to learn and improve at th
 
 ## How To Run Locally
 
-1. Clone the repository
+1. Clone the repository `git clone https://github.com/MegaToastt/mern-meal-planner`
 2. From root directory run `npm install`
 3. Create a `.env` file in root directory of app and add the following
    - `MONGODB_URL={your DB url here}`
